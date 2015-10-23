@@ -6,7 +6,7 @@
 Settings.yaml.example
 
 Resources/Private/node_modules
-Resources/Private/GallerySource/bower_components
+Resources/Private/bower_components
 
 npm-debug.log
 

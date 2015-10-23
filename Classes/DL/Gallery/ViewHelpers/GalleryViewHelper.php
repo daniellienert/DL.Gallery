@@ -2,8 +2,7 @@
 namespace DL\Gallery\ViewHelpers;
 
 /***************************************************************
- *  Copyright (C) 2015 punkt.de GmbH
- *  Authors: el_equipo <el_equipo@punkt.de>
+ *  Copyright (C) 2015 Daniel Lienert
  *
  *  This script is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Lesser General Public License as published
@@ -27,8 +26,6 @@ use TYPO3\TYPO3CR\Domain\Model\Node;
 class GalleryViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
 {
 
-
-
     /**
      * @Flow\Inject
      * @var \TYPO3\Media\Domain\Repository\TagRepository
@@ -41,14 +38,29 @@ class GalleryViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractTagBasedVie
      */
     protected $imageRepository;
 
+    /**
+     * @var array
+     */
+    protected $settings;
+
+    /**
+     * @param array $settings
+     * @return void
+     */
+    public function injectSettings(array $settings)
+    {
+        $this->settings = $settings;
+    }
 
 
     public function render(Node $galleryNode)
     {
+        $this->templateVariableContainer->add('themeSettings', $this->getSettingsForCurrentTheme());
+
         $images = $this->selectImages($galleryNode);
         $result = '';
 
-        foreach($images as $image) {
+        foreach ($images as $image) {
             $this->templateVariableContainer->add('image', $image);
             $result .= $this->renderChildren();
             $this->templateVariableContainer->remove('image');
@@ -65,11 +77,18 @@ class GalleryViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractTagBasedVie
     protected function selectImages(Node $galleryNode)
     {
         $tagIdentifier = $galleryNode->getProperty('tag');
-        $tag = $this->tagRepository->findByIdentifier($tagIdentifier); /** @var \TYPO3\Media\Domain\Model\Tag $tag */
+        $tag = $this->tagRepository->findByIdentifier($tagIdentifier);
+        /** @var \TYPO3\Media\Domain\Model\Tag $tag */
 
         $images = $this->imageRepository->findByTag($tag);
 
         return $images;
+    }
+
+
+    protected function getSettingsForCurrentTheme()
+    {
+        return $this->settings['themes']['bootstrapLightbox']['themeSettings'];
     }
 
 }

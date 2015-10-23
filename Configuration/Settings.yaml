@@ -1,20 +1,28 @@
+TYPO3:
+  Neos:
+    typoScript:
+      autoInclude:
+        'DL.Gallery': TRUE
+
+
 DL:
   Gallery:
     themes:
-      bootstrap:
-        label: 'Bootstrap'
-        themeOptions:
+      bootstrapLightbox:
+        label: 'Bootstrap with Lightbox'
+        themeSettings:
+          columnClass: 'col-md-4'
           resolutions:
             thumb:
               maximumWidth:
               maximumHeight:
-              width:
-              height:
-              allowCropping:
+              width: 500
+              height: 500
+              allowCropping: true
               allowUpScaling:
-            lightbox:
-              maximumWidth:
-              maximumHeight:
+            large:
+              maximumWidth: 2000
+              maximumHeight: 1200
               width:
               height:
               allowCropping:

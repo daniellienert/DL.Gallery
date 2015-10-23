@@ -1,13 +1,28 @@
 prototype(Page) {
-    stylesheets.gallery = TYPO3.TypoScript:Tag {
+    head.stylesheets.gallery = TYPO3.TypoScript:Tag {
         tagName = 'link'
         omitClosingTag = TRUE
 
         attributes {
             rel = 'stylesheet'
             href = TYPO3.TypoScript:ResourceUri {
-                path = 'resource://DL.Gallery/Public/Styles/libs.min.css'
+                path = 'resource://DL.Gallery/Public/Styles/BootstrapLightbox.css'
             }
         }
+
+        @position = 'after site'
+    }
+
+    body.javascripts.gallery = TYPO3.TypoScript:Tag {
+        tagName = 'script'
+        omitClosingTag = TRUE
+
+        attributes {
+            src = TYPO3.TypoScript:ResourceUri {
+                path = 'resource://DL.Gallery/Public/JavaScript/BootstrapLightbox.min.js'
+            }
+        }
+
+        @position = 'after site'
     }
 }

@@ -25,28 +25,27 @@ use TYPO3\Neos\Service\DataSource\AbstractDataSource;
 use TYPO3\TYPO3CR\Domain\Model\NodeInterface;
 use TYPO3\Flow\Annotations as Flow;
 
-class TagDataSource extends AbstractDataSource
+class ThemeDataSource extends AbstractDataSource
 {
 
     /**
      * @var string
      */
-    static protected $identifier = 'dl-gallery-tags';
-
-
-    /**
-     * @Flow\Inject
-     * @var \TYPO3\Flow\Persistence\PersistenceManagerInterface
-     */
-    protected $persistenceManager;
-
+    static protected $identifier = 'dl-gallery-themes';
 
     /**
-     * @Flow\inject
-     * @var \TYPO3\Media\Domain\Repository\TagRepository
+     * @var array
      */
-    protected $tagRepository;
+    protected $settings;
 
+    /**
+     * @param array $settings
+     * @return void
+     */
+    public function injectSettings(array $settings)
+    {
+        $this->settings = $settings;
+    }
 
     /**
      * @param NodeInterface|null $node
@@ -55,16 +54,15 @@ class TagDataSource extends AbstractDataSource
      */
     public function getData(NodeInterface $node = null, array $arguments)
     {
+        $themes = [];
 
-        $tagCollection = $this->tagRepository->findAll();
-        $tags = [];
+        foreach ($this->settings['themes'] as $key => $theme) {
 
-        foreach ($tagCollection as $tag) {
-            /** @var \TYPO3\Media\Domain\Model\Tag $tag */
-            $tags[$this->persistenceManager->getIdentifierByObject($tag)] = $tag;
+            $label = isset($theme['label']) ? $theme['label'] : $key;
+            $themes[$key] = $label;
         }
 
-        return $tags;
+        return $themess;
     }
 
 }

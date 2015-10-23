@@ -1,8 +1,10 @@
 module.exports = {
-    dist: {
+    bootstrapLightbox: {
         src: [
-            'JavaScript/*.js'
+            'bower_components/photoswipe/dist/photoswipe.js',
+            'bower_components/photoswipe/dist/photoswipe-ui-default.js',
+            'JavaScript/PhotoSwipe.js'
         ],
-        dest: '../Public/JavaScript/main.min.js'
+        dest: '../Public/JavaScript/BootstrapLightbox.min.js'
     }
 }

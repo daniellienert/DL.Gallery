@@ -1,36 +1,35 @@
 {namespace neos=TYPO3\Neos\ViewHelpers}
 {namespace media=TYPO3\Media\ViewHelpers}
-<figure{f:if(condition: imageClassName, then: ' class="{imageClassName}"')}>
-	<f:if condition="{image}">
-		<f:then>
-			<f:if condition="{link}">
-					<a href="{link}">
-			</f:if>
-			<media:image
-				additionalAttributes="{srcset: '{media:uri.image(image: image, width: width, height:height, maximumWidth: maximumWidthRetina, maximumHeight: maximumHeightRetina, allowCropping: allowCropping)} 2x,
-				{media:uri.image(image: image, width: width, height:height, maximumWidth: maximumWidth, maximumHeight: maximumHeight, allowCropping: allowCropping)} 1x'}"
-				asset="{image}"
-				title="{title}"
-				alt="{alternativeText}"
-				width="{width}"
-				height="{height}"
-				maximumWidth="{maximumWidth}"
-				maximumHeight="{maximumHeight}"
-				allowCropping="{allowCropping}"
-				allowUpScaling="{allowUpScaling}"
-				class="{class}"
-			/>
-			<f:if condition="{link}"></a></f:if>
-		</f:then>
-		<f:else>
-			<f:if condition="{neos:rendering.inEditMode()}">
-				<img src="{f:uri.resource(package: 'TYPO3.Neos', path: 'Images/dummy-image.svg')}" title="Dummy image" alt="Dummy image" class="neos-handle" />
-			</f:if>
-		</f:else>
-	</f:if>
-	<f:if condition="{hasCaption}">
-		<figcaption>
-			{neos:contentElement.editable(property: 'caption', node: node)}
-		</figcaption>
-	</f:if>
-</figure>
+
+<f:if condition="{image}">
+	<f:then>
+		<f:if condition="{link}">
+				<a href="{link}">
+		</f:if>
+		<media:image
+			additionalAttributes="{srcset: '{media:uri.image(image: image, width: width, height:height, maximumWidth: maximumWidthRetina, maximumHeight: maximumHeightRetina, allowCropping: allowCropping)} 2x,
+			{media:uri.image(image: image, width: width, height:height, maximumWidth: maximumWidth, maximumHeight: maximumHeight, allowCropping: allowCropping)} 1x'}"
+			asset="{image}"
+			title="{title}"
+			alt="{alternativeText}"
+			width="{width}"
+			height="{height}"
+			maximumWidth="{maximumWidth}"
+			maximumHeight="{maximumHeight}"
+			allowCropping="{allowCropping}"
+			allowUpScaling="{allowUpScaling}"
+			class="{class}"
+		/>
+		<f:if condition="{link}"></a></f:if>
+	</f:then>
+	<f:else>
+		<f:if condition="{neos:rendering.inEditMode()}">
+			<img src="{f:uri.resource(package: 'TYPO3.Neos', path: 'Images/dummy-image.svg')}" title="Dummy image" alt="Dummy image" class="neos-handle" />
+		</f:if>
+	</f:else>
+</f:if>
+<f:if condition="{hasCaption}">
+	<figcaption>
+		{neos:contentElement.editable(property: 'caption', node: node)}
+	</figcaption>
+</f:if>
