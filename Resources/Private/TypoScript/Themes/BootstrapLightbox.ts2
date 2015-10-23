@@ -1,0 +1,13 @@
+prototype(Page) {
+    stylesheets.gallery = TYPO3.TypoScript:Tag {
+        tagName = 'link'
+        omitClosingTag = TRUE
+
+        attributes {
+            rel = 'stylesheet'
+            href = TYPO3.TypoScript:ResourceUri {
+                path = 'resource://DL.Gallery/Public/Styles/libs.min.css'
+            }
+        }
+    }
+}
