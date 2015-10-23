@@ -1,0 +1,21 @@
+DL:
+  Gallery:
+    themes:
+      bootstrap:
+        label: 'Bootstrap'
+        themeOptions:
+          resolutions:
+            thumb:
+              maximumWidth:
+              maximumHeight:
+              width:
+              height:
+              allowCropping:
+              allowUpScaling:
+            lightbox:
+              maximumWidth:
+              maximumHeight:
+              width:
+              height:
+              allowCropping:
+              allowUpScaling:

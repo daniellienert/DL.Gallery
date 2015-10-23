@@ -1,0 +1,11 @@
+{namespace g = DL\Gallery\ViewHelpers}
+
+<div class="container gallery">
+    <div class="row">
+        <g:gallery galleryNode="{node}">
+            <div class="col-md-3 typo3-neos-nodetypes-image">
+                <f:render partial="Image" arguments="{image: image, height:600, width:600, allowCropping: true}"/>
+            </div>
+        </g:gallery>
+    </div>
+</div>

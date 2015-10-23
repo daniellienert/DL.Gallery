@@ -1,0 +1,22 @@
+'DL.Gallery:Gallery':
+  superTypes:
+    'TYPO3.Neos:Content': TRUE
+  ui:
+    label: 'Gallery'
+    icon: 'icon-picture'
+    position: 300
+    inspector:
+      groups:
+        resources:
+          label: 'Gallery'
+  properties:
+    tag:
+      type: string
+      ui:
+        label: 'Tags'
+        inspector:
+          group: resources
+          editor: Content/Inspector/Editors/SelectBoxEditor
+          editorOptions:
+            dataSourceIdentifier: 'dl-gallery-tags'
+        reloadIfChanged: TRUE
