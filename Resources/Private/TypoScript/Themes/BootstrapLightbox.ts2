@@ -1,7 +1,6 @@
 prototype(Page) {
     head.stylesheets.gallery = TYPO3.TypoScript:Tag {
         tagName = 'link'
-        omitClosingTag = TRUE
 
         attributes {
             rel = 'stylesheet'
@@ -10,18 +9,23 @@ prototype(Page) {
             }
         }
 
+        @if.jsLoadingActivates = ${Configuration.setting('DL.Gallery.loadGalleryCSS')}
+        @if.galleryIsPresent = ${q(node).find('[instanceof DL.Gallery:Gallery]').count() > 0}
         @position = 'after site'
     }
 
     body.javascripts.gallery = TYPO3.TypoScript:Tag {
         tagName = 'script'
-        omitClosingTag = TRUE
 
         attributes {
             src = TYPO3.TypoScript:ResourceUri {
                 path = 'resource://DL.Gallery/Public/JavaScript/BootstrapLightbox.min.js'
             }
         }
+
+        @if.isFrontend = ${node.context.workspaceName == 'live'}
+        @if.jsLoadingActivated = ${Configuration.setting('DL.Gallery.loadGalleryJS')}
+        @if.galleryIsPresent = ${q(node).find('[instanceof DL.Gallery:Gallery]').count() > 0}
 
         @position = 'after site'
     }
