@@ -21,6 +21,7 @@ namespace DL\Gallery\ViewHelpers;
  ***************************************************************/
 
 use TYPO3\Flow\Annotations as Flow;
+use TYPO3\Media\Domain\Model\Image;
 use TYPO3\TYPO3CR\Domain\Model\Node;
 
 class GalleryViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
@@ -60,11 +61,17 @@ class GalleryViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractTagBasedVie
         $images = $this->selectImages($galleryNode);
         $result = '';
 
-        foreach ($images as $image) {
+        foreach ($images as $image) { /** @var Image $image */
             $this->templateVariableContainer->add('image', $image);
+            $this->templateVariableContainer->add('imageMeta', $this->buildImageMetaDataArray($image));
+
             $result .= $this->renderChildren();
+
             $this->templateVariableContainer->remove('image');
+            $this->templateVariableContainer->remove('imageMeta');
         }
+
+        $this->templateVariableContainer->remove('themeSettings');
 
         return $result;
     }
@@ -83,6 +90,18 @@ class GalleryViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractTagBasedVie
         $images = $this->imageRepository->findByTag($tag);
 
         return $images;
+    }
+
+
+    /**
+     * @param Image $image
+     * @return array
+     */
+    protected function buildImageMetaDataArray(Image $image) {
+        return [
+            'title' => $image->getTitle(),
+            'caption' => $image->getCaption()
+        ];
     }
 
 
