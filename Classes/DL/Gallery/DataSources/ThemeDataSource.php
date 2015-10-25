@@ -54,15 +54,17 @@ class ThemeDataSource extends AbstractDataSource
      */
     public function getData(NodeInterface $node = null, array $arguments)
     {
+
         $themes = [];
 
         foreach ($this->settings['themes'] as $key => $theme) {
 
             $label = isset($theme['label']) ? $theme['label'] : $key;
-            $themes[$key] = $label;
+            $themes[$key]['label'] = $label;
         }
 
-        return $themess;
+        return $themes;
+
     }
 
 }

@@ -26,6 +26,7 @@
 
     theme:
       type: string
+      defaultValue: bootstrapLightbox
       ui:
         label: 'Theme'
         inspector:
