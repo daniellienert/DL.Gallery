@@ -86,7 +86,7 @@ class GalleryViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractTagBasedVie
         $tagIdentifier = $galleryNode->getProperty('tag');
         $tag = $this->tagRepository->findByIdentifier($tagIdentifier);
         /** @var \TYPO3\Media\Domain\Model\Tag $tag */
-
+        
         $images = $this->imageRepository->findByTag($tag);
 
         return $images;

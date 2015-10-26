@@ -6,21 +6,11 @@
     <div class="row dl-gallery">
         <g:gallery galleryNode="{node}">
             <figure itemprop="associatedMedia" itemtype="http://schema.org/ImageObject" class="{themeSettings.columnClass} typo3-neos-nodetypes-image">
-                <a href="{media:uri.image(image: image, height:themeSettings.resolutions.large.height, width:themeSettings.resolutions.large.width, maximumWidth: themeSettings.resolutions.large.maximumWidth, maximumHeight: themeSettings.resolutions.thumb.maximumHeight, allowCropping:themeSettings.resolutions.large.allowCropping)}" itemprop="contentUrl" data-size="2000x1300">
-                    <media:image
-                        additionalAttributes="{itemprop: 'thumbnail'}"
-                        asset="{image}"
-                        title="{imageMeta.title}"
-                        alt="{imageMeta.caption}"
-                        width="{themeSettings.resolutions.thumb.width}"
-                        height="{themeSettings.resolutions.thumb.height}"
-                        maximumWidth="{themeSettings.resolutions.thumb.maximumWidth}"
-                        maximumHeight="{themeSettings.resolutions.thumb.maximumHeight}"
-                        allowCropping="{themeSettings.resolutions.thumb.allowCropping}"
-                        allowUpScaling="{allowUpScaling}"
-                        class="{class}"
-                        />
+                <a href="{g:imageData(image:image theme:'bootstrapLightbox', imageVariant:'large', key:'src')}" itemprop="contentUrl" data-size="{g:imageData(image:image theme:'bootstrapLightbox', imageVariant:'large', key:'width')}x{g:imageData(image:image theme:'bootstrapLightbox', imageVariant:'large', key:'height')}">
+                    <g:image image="{image}" theme="bootstrapLightbox" imageVariant="thumb" additionalAttributes="{itemprop: 'thumbnail'}"/>
                 </a>
+
+                <figcaption itemprop="caption description">{g:imageData(image:image theme:'bootstrapLightbox', imageVariant:'large', key:'caption')}</figcaption>
             </figure>
         </g:gallery>
     </div>

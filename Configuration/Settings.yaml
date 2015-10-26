@@ -16,7 +16,7 @@ DL:
         label: 'Bootstrap with Lightbox'
         themeSettings:
           columnClass: 'col-md-4'
-          resolutions:
+          imageVariants:
             thumb:
               maximumWidth:
               maximumHeight:

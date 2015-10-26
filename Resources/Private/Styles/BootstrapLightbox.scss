@@ -4,3 +4,9 @@
 $pswp__assets-path: '/_Resources/Static/Packages/DL.Gallery/Galleries/PhotoSwipe/';
 
 @import "../bower_components/photoswipe/src/css/default-skin/default-skin.scss";
+
+.dl-gallery {
+  figcaption {
+    display: none;
+  }
+}
