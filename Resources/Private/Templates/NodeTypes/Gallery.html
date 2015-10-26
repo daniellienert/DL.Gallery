@@ -2,6 +2,9 @@
 {namespace media=TYPO3\Media\ViewHelpers}
 
 
+<f:if condition="{node.properties.tag}">
+    <f:then>
+
 <div class="dl-gallery" itemscope itemtype="http://schema.org/ImageGallery">
     <div class="row dl-gallery">
         <g:gallery galleryNode="{node}">
@@ -15,6 +18,14 @@
         </g:gallery>
     </div>
 </div>
+
+    </f:then>
+    <f:else>
+        <f:if condition="{node.context.workspace.name} != 'live'">
+            <div>Please select a tag in the inspector to display a gallery.</div>
+        </f:if>
+    </f:else>
+</f:if>
 
 
 <!-- Root element of PhotoSwipe. Must have class pswp. -->
