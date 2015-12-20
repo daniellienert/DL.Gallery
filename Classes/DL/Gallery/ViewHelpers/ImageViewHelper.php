@@ -21,6 +21,7 @@ namespace DL\Gallery\ViewHelpers;
  ***************************************************************/
 
 use TYPO3\Flow\Annotations as Flow;
+use TYPO3\Media\Domain\Model\ImageInterface;
 
 
 class ImageViewHelper extends \TYPO3\Media\ViewHelpers\ImageViewHelper
@@ -54,7 +55,7 @@ class ImageViewHelper extends \TYPO3\Media\ViewHelpers\ImageViewHelper
     }
 
 
-    public function render(\TYPO3\Media\Domain\Model\ImageInterface $image = null, $width = null, $maximumWidth = null, $height = null, $maximumHeight = null, $allowCropping = false, $allowUpScaling = false)
+    public function render(ImageInterface $image = null, $width = null, $maximumWidth = null, $height = null, $maximumHeight = null, $allowCropping = false, $allowUpScaling = false, $async = false, $preset = null)
     {
 
         if ($this->hasArgument('theme') && $this->hasArgument('imageVariant')) {
@@ -76,7 +77,7 @@ class ImageViewHelper extends \TYPO3\Media\ViewHelpers\ImageViewHelper
             'alt' => $image->getCaption()
         ]);
 
-        return parent::render($image, $width, $maximumWidth, $height, $maximumHeight, $allowCropping, $allowUpScaling);
+        return parent::render($image, $width, $maximumWidth, $height, $maximumHeight, $allowCropping, $allowUpScaling, $async, $preset);
     }
 
 
