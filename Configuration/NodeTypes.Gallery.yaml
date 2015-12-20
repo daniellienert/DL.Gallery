@@ -1,37 +1,35 @@
 'DL.Gallery:Gallery':
   superTypes:
-    'TYPO3.Neos:Content': TRUE
+    'TYPO3.Neos:Content': true
   ui:
-    label: 'Gallery'
-    icon: 'icon-picture'
+    label: Gallery
+    icon: icon-picture
     position: 300
     inspector:
       groups:
         source:
-          label: 'Source'
+          label: Source
         presentation:
-          label: 'Presentation'
-
+          label: Presentation
   properties:
     tag:
       type: string
       ui:
-        label: 'Tags'
+        label: Tags
         inspector:
           group: source
           editor: Content/Inspector/Editors/SelectBoxEditor
           editorOptions:
-            dataSourceIdentifier: 'dl-gallery-tags'
-        reloadIfChanged: TRUE
-
+            dataSourceIdentifier: dl-gallery-tags
+        reloadIfChanged: true
     theme:
       type: string
       defaultValue: bootstrapLightbox
       ui:
-        label: 'Theme'
+        label: Theme
         inspector:
           group: presentation
           editor: Content/Inspector/Editors/SelectBoxEditor
           editorOptions:
-            dataSourceIdentifier: 'dl-gallery-themes'
-        reloadIfChanged: TRUE
+            dataSourceIdentifier: dl-gallery-themes
+        reloadIfChanged: true
