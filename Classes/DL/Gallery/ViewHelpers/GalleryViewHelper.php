@@ -21,6 +21,7 @@ namespace DL\Gallery\ViewHelpers;
  ***************************************************************/
 
 use TYPO3\Flow\Annotations as Flow;
+use TYPO3\Flow\Persistence\QueryInterface;
 use TYPO3\Media\Domain\Model\Image;
 use TYPO3\TYPO3CR\Domain\Model\Node;
 
@@ -65,7 +66,7 @@ class GalleryViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractTagBasedVie
         $this->templateVariableContainer->add('themeSettings', $this->getSettingsForCurrentTheme());
 
         $images = $this->selectImages($galleryNode);
-        
+
         if($images->count() === 0) {
             return 'No images are assigned to the selected tag. Please go to the media management and assign images to this tag.';
         }
@@ -95,9 +96,15 @@ class GalleryViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractTagBasedVie
     protected function selectImages(Node $galleryNode)
     {
         $tagIdentifier = $galleryNode->getProperty('tag');
-        $tag = $this->tagRepository->findByIdentifier($tagIdentifier);
-        /** @var \TYPO3\Media\Domain\Model\Tag $tag */
-        
+        $tag = $this->tagRepository->findByIdentifier($tagIdentifier); /** @var \TYPO3\Media\Domain\Model\Tag $tag */
+
+        $sortingField = $galleryNode->getProperty('sortingField') ?: 'resource.filename';
+        $sortingDirection = $galleryNode->getProperty('sortingDirection') === QueryInterface::ORDER_DESCENDING ? QueryInterface::ORDER_DESCENDING : QueryInterface::ORDER_ASCENDING;
+
+        $this->imageRepository->setDefaultOrderings([
+            $sortingField => $sortingDirection
+        ]);
+
         $images = $this->imageRepository->findByTag($tag);
 
         return $images;

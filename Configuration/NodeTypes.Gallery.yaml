@@ -22,6 +22,36 @@
           editorOptions:
             dataSourceIdentifier: dl-gallery-tags
         reloadIfChanged: true
+    sortingField:
+      type: string
+      defaultValue: 'resource.filename'
+      ui:
+        label: Sorting Field
+        inspector:
+          group: source
+          editor: Content/Inspector/Editors/SelectBoxEditor
+          editorOptions:
+             values:
+              'resource.filename':
+                label: Name
+              lastModified:
+                label: Last Modiefied
+        reloadIfChanged: true
+    sortingDirection:
+      type: string
+      defaultValue: ASC
+      ui:
+        label: Sorting Direction
+        inspector:
+          group: source
+          editor: Content/Inspector/Editors/SelectBoxEditor
+          editorOptions:
+             values:
+              ASC:
+                label: Ascending
+              DESC:
+                label: Descending
+        reloadIfChanged: true
     theme:
       type: string
       defaultValue: bootstrapLightbox
