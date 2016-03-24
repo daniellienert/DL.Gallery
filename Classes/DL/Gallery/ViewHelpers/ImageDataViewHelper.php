@@ -69,7 +69,7 @@ class ImageDataViewHelper extends AbstractViewHelper
         parent::initializeArguments();
         $this->registerArgument('theme', 'string', 'The name of a gallery theme', false);
         $this->registerArgument('imageVariant', 'string', 'The name of a defined resolution', false);
-        $this->registerArgument('key', 'string', 'The key of meta data array', false);
+        $this->registerArgument('key', 'string', 'The key of the meta data array', false);
     }
 
 
@@ -97,12 +97,13 @@ class ImageDataViewHelper extends AbstractViewHelper
         $imageData['title'] = $image->getTitle();
         $imageData['caption'] = $image->getCaption();
 
-        if($this->hasArgument('key')) {
-            return $imageData[$this->arguments['key']];
-        } else {
+        if(!$this->hasArgument('key')) {
             return $imageData;
         }
 
+        if (array_key_exists($this->arguments['key'], $imageData)) {
+            return $imageData[$this->arguments['key']];
+        }
     }
 
 
