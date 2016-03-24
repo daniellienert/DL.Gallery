@@ -54,11 +54,22 @@ class GalleryViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractTagBasedVie
     }
 
 
+    /**
+     * @param Node $galleryNode
+     * @return string
+     * @throws \TYPO3\Fluid\Core\ViewHelper\Exception\InvalidVariableException
+     */
     public function render(Node $galleryNode)
     {
+
         $this->templateVariableContainer->add('themeSettings', $this->getSettingsForCurrentTheme());
 
         $images = $this->selectImages($galleryNode);
+        
+        if($images->count() === 0) {
+            return 'No images are assigned to the selected tag. Please go to the media management and assign images to this tag.';
+        }
+
         $result = '';
 
         foreach ($images as $image) { /** @var Image $image */
