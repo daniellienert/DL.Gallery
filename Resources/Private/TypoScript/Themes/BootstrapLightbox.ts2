@@ -1,4 +1,7 @@
-prototype(Page) {
+prototype(TYPO3.Neos:Page) {
+
+    @context.galleryInstanceIsPresent = ${q(node).children('[instanceof TYPO3.Neos:ContentCollection]').find('[instanceof DL.Gallery:Gallery]').count() > 0}
+
     head.stylesheets.gallery = TYPO3.TypoScript:Tag {
         tagName = 'link'
 
@@ -10,7 +13,7 @@ prototype(Page) {
         }
 
         @if.jsLoadingActivates = ${Configuration.setting('DL.Gallery.loadGalleryCSS')}
-        @if.galleryIsPresent = ${q(node).children('[instanceof TYPO3.Neos:ContentCollection]').find('[instanceof DL.Gallery:Gallery]').count() > 0}
+        @if.galleryInstanceIsPresent = ${galleryInstanceIsPresent}
         @position = 'after site'
     }
 
@@ -25,8 +28,7 @@ prototype(Page) {
 
         @if.isFrontend = ${node.context.workspaceName == 'live'}
         @if.jsLoadingActivated = ${Configuration.setting('DL.Gallery.loadGalleryJS')}
-        @if.galleryIsPresent = ${q(node).children('[instanceof TYPO3.Neos:ContentCollection]').find('[instanceof DL.Gallery:Gallery]').count() > 0}
-
+        @if.galleryInstanceIsPresent = ${galleryInstanceIsPresent}
         @position = 'after site'
     }
 }
