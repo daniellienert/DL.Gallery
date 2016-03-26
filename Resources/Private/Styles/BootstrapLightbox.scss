@@ -1,9 +1,9 @@
 // Bootstrap
-@import "../bower_components/photoswipe/src/css/main.scss";
+@import "../node_modules/photoswipe/src/css/main.scss";
 
 $pswp__assets-path: '/_Resources/Static/Packages/DL.Gallery/Galleries/PhotoSwipe/';
 
-@import "../bower_components/photoswipe/src/css/default-skin/default-skin.scss";
+@import "../node_modules/photoswipe/src/css/default-skin/default-skin.scss";
 
 .dl-gallery {
   figcaption {

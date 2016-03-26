@@ -16,5 +16,8 @@
   },
   "scripts": {
     "postinstall": "bower --allow-root install && grunt"
+  },
+  "dependencies": {
+    "photoswipe": "^4.1.1"
   }
 }

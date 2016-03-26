@@ -1,10 +1,11 @@
 (function($) {
-    $('.dl-gallery').each( function() {
+    $('.lightbox-images').each( function() {
+        console.log('found');
         // Get the items.
-        var $pic     = $(this),
+        var $gallery     = $(this),
             getItems = function() {
                 var items = [];
-                $pic.find('figure').each(function() {
+                $gallery.find('figure').each(function() {
                     var $href    = $(this).find('a').attr('href'),
                         $size    = $(this).find('a').data('size').split('x'),
                         $width   = $size[0],
@@ -34,7 +35,7 @@
 
         // Binding click event.
         var $pswp = $('.pswp')[0];
-        $pic.on('click', 'figure', function(event) {
+        $gallery.on('click', 'figure', function(event) {
             event.preventDefault();
 
             var $index = $(this).index();
@@ -50,11 +51,12 @@
 
             var lightBox = new PhotoSwipe($pswp, PhotoSwipeUI_Default, items, options);
             lightBox.init();
-        });
 
-        $pswp.listen('close', function() {
-            $pic.off('click');
+            if($.isFunction($pswp.listen)) {
+                $pswp.listen('close', function() {
+                    $gallery.off('click');
+                });
+            }
         });
-
     });
 })(jQuery);
