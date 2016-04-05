@@ -29,4 +29,6 @@
     </f:if>
 </div>
 
-<f:render partial="PhotoSwipe" />
+<f:if condition="{requestFormat} == 'html'">
+    <f:render partial="PhotoSwipe" />
+</f:if>
