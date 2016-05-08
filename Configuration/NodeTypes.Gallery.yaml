@@ -7,17 +7,28 @@
     position: 300
     inspector:
       groups:
-        source:
-          label: Source
+        sourceBySelectedAssets:
+          label: Select Images
+        sourceByTags:
+          label: Source by Tags
         presentation:
           label: Presentation
   properties:
+
+    assets:
+      type: array<TYPO3\Media\Domain\Model\Asset>
+      ui:
+        inspector:
+          group: sourceBySelectedAssets
+        label: Images
+        reloadIfChanged: TRUE
+
     tag:
       type: string
       ui:
         label: Tags
         inspector:
-          group: source
+          group: sourceByTags
           editor: Content/Inspector/Editors/SelectBoxEditor
           editorOptions:
             dataSourceIdentifier: dl-gallery-tags
@@ -28,7 +39,7 @@
       ui:
         label: Sorting Field
         inspector:
-          group: source
+          group: sourceByTags
           editor: Content/Inspector/Editors/SelectBoxEditor
           editorOptions:
              values:
@@ -43,7 +54,7 @@
       ui:
         label: Sorting Direction
         inspector:
-          group: source
+          group: sourceByTags
           editor: Content/Inspector/Editors/SelectBoxEditor
           editorOptions:
              values:
@@ -52,6 +63,7 @@
               DESC:
                 label: Descending
         reloadIfChanged: true
+
     theme:
       type: string
       defaultValue: bootstrapLightbox

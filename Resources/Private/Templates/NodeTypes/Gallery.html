@@ -3,7 +3,7 @@
 
 
 <div {attributes -> f:format.raw()}>
-    <f:if condition="{node.properties.tag}">
+    <f:if condition="{imagesSelected}">
         <f:then>
 
     <div class="dl-gallery lightbox-images" itemscope itemtype="http://schema.org/ImageGallery">
@@ -19,11 +19,10 @@
             </g:gallery>
         </div>
     </div>
-
         </f:then>
         <f:else>
             <f:if condition="{node.context.workspace.name} != 'live'">
-                <div>Please select a tag in the inspector to display a gallery.</div>
+                <div>Please select select some images or a tag in the inspector to display a gallery.</div>
             </f:if>
         </f:else>
     </f:if>

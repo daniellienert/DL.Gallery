@@ -23,6 +23,7 @@ namespace DL\Gallery\ViewHelpers;
 use TYPO3\Flow\Annotations as Flow;
 use TYPO3\Flow\Persistence\QueryInterface;
 use TYPO3\Media\Domain\Model\Image;
+use TYPO3\Media\Domain\Model\Tag;
 use TYPO3\TYPO3CR\Domain\Model\Node;
 
 class GalleryViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
@@ -65,15 +66,19 @@ class GalleryViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractTagBasedVie
 
         $this->templateVariableContainer->add('themeSettings', $this->getSettingsForCurrentTheme());
 
-        $images = $this->selectImages($galleryNode);
+        $images = array_merge(
+            $this->selectImagesByTag($galleryNode), 
+            $this->getSelectedImages($galleryNode)
+        );
 
-        if($images->count() === 0) {
+        if (count($images) === 0) {
             return 'No images are assigned to the selected tag. Please go to the media management and assign images to this tag.';
         }
 
         $result = '';
 
-        foreach ($images as $image) { /** @var Image $image */
+        foreach ($images as $image) {
+            /** @var Image $image */
             $this->templateVariableContainer->add('image', $image);
             $this->templateVariableContainer->add('imageMeta', $this->buildImageMetaDataArray($image));
 
@@ -91,12 +96,33 @@ class GalleryViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractTagBasedVie
 
     /**
      * @param Node $galleryNode
-     * @return \TYPO3\Flow\Persistence\QueryResultInterface
+     * @return array
      */
-    protected function selectImages(Node $galleryNode)
+    protected function getSelectedImages(Node $galleryNode)
+    {
+        $assets = $galleryNode->getProperty('assets');
+        return is_array($assets) ? $assets : [];
+    }
+
+
+    /**
+     * @param Node $galleryNode
+     * @return array
+     */
+    protected function selectImagesByTag(Node $galleryNode)
     {
         $tagIdentifier = $galleryNode->getProperty('tag');
-        $tag = $this->tagRepository->findByIdentifier($tagIdentifier); /** @var \TYPO3\Media\Domain\Model\Tag $tag */
+
+        if(empty($tagIdentifier)) {
+            return [];
+        }
+
+        $tag = $this->tagRepository->findByIdentifier($tagIdentifier);
+        /** @var Tag $tag */
+
+        if(!($tag instanceof Tag)) {
+            return [];
+        }
 
         $sortingField = $galleryNode->getProperty('sortingField') ?: 'resource.filename';
         $sortingDirection = $galleryNode->getProperty('sortingDirection') === QueryInterface::ORDER_DESCENDING ? QueryInterface::ORDER_DESCENDING : QueryInterface::ORDER_ASCENDING;
@@ -105,7 +131,7 @@ class GalleryViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractTagBasedVie
             $sortingField => $sortingDirection
         ]);
 
-        $images = $this->imageRepository->findByTag($tag);
+        $images = $this->imageRepository->findByTag($tag)->toArray();
 
         return $images;
     }
@@ -115,7 +141,8 @@ class GalleryViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractTagBasedVie
      * @param Image $image
      * @return array
      */
-    protected function buildImageMetaDataArray(Image $image) {
+    protected function buildImageMetaDataArray(Image $image)
+    {
         return [
             'title' => $image->getTitle(),
             'caption' => $image->getCaption()

@@ -1,3 +1,4 @@
 prototype(DL.Gallery:Gallery) < prototype(TYPO3.Neos:Content) {
     requestFormat = ${request.format}
+    imagesSelected = ${q(node).property('tag') || Type.isArray(q(node).property('assets'))}
 }
