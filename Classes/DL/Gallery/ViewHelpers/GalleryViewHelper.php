@@ -113,13 +113,13 @@ class GalleryViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractTagBasedVie
     {
         $tagIdentifier = $galleryNode->getProperty('tag');
 
-        if(empty($tagIdentifier)) {
+        if(empty($tagIdentifier) || $tagIdentifier === '~') {
             return [];
         }
 
         $tag = $this->tagRepository->findByIdentifier($tagIdentifier);
         /** @var Tag $tag */
-
+        
         if(!($tag instanceof Tag)) {
             return [];
         }

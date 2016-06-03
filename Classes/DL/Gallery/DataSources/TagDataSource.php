@@ -57,7 +57,7 @@ class TagDataSource extends AbstractDataSource
     {
 
         $tagCollection = $this->tagRepository->findAll();
-        $tags = [];
+        $tags['~']['label'] = '';
 
         foreach ($tagCollection as $tag) {
             /** @var \TYPO3\Media\Domain\Model\Tag $tag */
