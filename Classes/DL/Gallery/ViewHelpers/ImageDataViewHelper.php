@@ -22,6 +22,7 @@ namespace DL\Gallery\ViewHelpers;
 
 use TYPO3\Flow\Annotations as Flow;
 use TYPO3\Fluid\Core\ViewHelper\AbstractViewHelper;
+use TYPO3\Media\Domain\Model\ImageInterface;
 use TYPO3\Media\Domain\Model\ThumbnailConfiguration;
 
 class ImageDataViewHelper extends AbstractViewHelper
@@ -73,7 +74,18 @@ class ImageDataViewHelper extends AbstractViewHelper
     }
 
 
-    public function render(\TYPO3\Media\Domain\Model\ImageInterface $image = null, $width = null, $maximumWidth = null, $height = null, $maximumHeight = null, $allowCropping = false, $allowUpScaling = false)
+    /**
+     * @param ImageInterface|null $image
+     * @param integer $width
+     * @param integer $maximumWidth
+     * @param integer $height
+     * @param integer $maximumHeight
+     * @param bool $allowCropping
+     * @param bool $allowUpScaling
+     * @return array|null
+     * @throws \TYPO3\Media\Exception\AssetServiceException
+     */
+    public function render(ImageInterface $image = null, $width = null, $maximumWidth = null, $height = null, $maximumHeight = null, $allowCropping = false, $allowUpScaling = false)
     {
 
         if ($this->hasArgument('theme') && $this->hasArgument('imageVariant')) {
@@ -81,13 +93,13 @@ class ImageDataViewHelper extends AbstractViewHelper
 
             $imageVariantSettings = $themeSettings['imageVariants'][$this->arguments['imageVariant']];
 
-            $width = $imageVariantSettings['width'];
-            $maximumWidth = $imageVariantSettings['maximumWidth'];
-            $height = $imageVariantSettings['height'];
-            $maximumHeight = $imageVariantSettings['maximumHeight'];
+            $width = isset($imageVariantSettings['width']) ? $imageVariantSettings['width'] : 0;
+            $maximumWidth = isset($imageVariantSettings['maximumWidth']) ? $imageVariantSettings['maximumWidth'] : 0;
+            $height = isset($imageVariantSettings['height']) ? $imageVariantSettings['height'] : 0;
+            $maximumHeight = isset($imageVariantSettings['maximumHeight']) ? $imageVariantSettings['maximumHeight'] : 0;
 
-            $allowCropping = $imageVariantSettings['allowCropping'];
-            $allowUpScaling = $imageVariantSettings['allowUpScaling'];
+            $allowCropping = isset($imageVariantSettings['allowCropping']) ? $imageVariantSettings['allowCropping'] : false;
+            $allowUpScaling = isset($imageVariantSettings['allowUpScaling']) ? $imageVariantSettings['allowUpScaling'] : false;
         }
 
 

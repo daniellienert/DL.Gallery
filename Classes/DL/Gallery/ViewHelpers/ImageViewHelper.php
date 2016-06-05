@@ -63,13 +63,13 @@ class ImageViewHelper extends \TYPO3\Media\ViewHelpers\ImageViewHelper
 
             $imageVariantSettings = $themeSettings['imageVariants'][$this->arguments['imageVariant']];
 
-            $width = $imageVariantSettings['width'];
-            $maximumWidth = $imageVariantSettings['maximumWidth'];
-            $height = $imageVariantSettings['height'];
-            $maximumHeight = $imageVariantSettings['maximumHeight'];
+            $width = isset($imageVariantSettings['width']) ? $imageVariantSettings['width'] : 0;
+            $maximumWidth = isset($imageVariantSettings['maximumWidth']) ? $imageVariantSettings['maximumWidth'] : 0;
+            $height = isset($imageVariantSettings['height']) ? $imageVariantSettings['height'] : 0;
+            $maximumHeight = isset($imageVariantSettings['maximumHeight']) ? $imageVariantSettings['maximumHeight'] : 0;
 
-            $allowCropping = $imageVariantSettings['allowCropping'];
-            $allowUpScaling = $imageVariantSettings['allowUpScaling'];
+            $allowCropping = isset($imageVariantSettings['allowCropping']) ? $imageVariantSettings['allowCropping'] : false;
+            $allowUpScaling = isset($imageVariantSettings['allowUpScaling']) ? $imageVariantSettings['allowUpScaling'] : false;
         }
 
         $this->tag->addAttributes([
