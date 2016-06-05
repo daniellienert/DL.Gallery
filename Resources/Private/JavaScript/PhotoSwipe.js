@@ -1,8 +1,7 @@
 (function($) {
     $('.lightbox-images').each( function() {
-        console.log('found');
         // Get the items.
-        var $gallery     = $(this),
+        var $gallery = $(this),
             getItems = function() {
                 var items = [];
                 $gallery.find('figure').each(function() {

@@ -1,6 +1,8 @@
 prototype(TYPO3.Neos:Page) {
-
     @context.galleryInstanceIsPresent = ${q(node).children('[instanceof TYPO3.Neos:ContentCollection]').find('[instanceof DL.Gallery:Gallery]').count() > 0}
+
+    @context.theme =  ${q(node).children('[instanceof TYPO3.Neos:ContentCollection]').find('[instanceof DL.Gallery:Gallery]').first().property('theme')}
+    @context.theme.@if.galleryInstanceIsPresent = ${galleryInstanceIsPresent}
 
     head.stylesheets.gallery = TYPO3.TypoScript:Tag {
         tagName = 'link'
@@ -8,7 +10,7 @@ prototype(TYPO3.Neos:Page) {
         attributes {
             rel = 'stylesheet'
             href = TYPO3.TypoScript:ResourceUri {
-                path = 'resource://DL.Gallery/Public/Styles/BootstrapLightbox.css'
+                path = ${Configuration.setting('DL.Gallery.themes.' + theme + '.themeSettings.galleryCSS')}
             }
         }
 
@@ -22,7 +24,7 @@ prototype(TYPO3.Neos:Page) {
 
         attributes {
             src = TYPO3.TypoScript:ResourceUri {
-                path = 'resource://DL.Gallery/Public/JavaScript/BootstrapLightbox.min.js'
+                path = ${Configuration.setting('DL.Gallery.themes.' + theme + '.themeSettings.galleryJS')}
             }
         }
 

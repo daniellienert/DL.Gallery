@@ -1,4 +1,11 @@
 prototype(DL.Gallery:Gallery) < prototype(TYPO3.Neos:Content) {
+    templatePath = ${'resource://DL.Gallery/Private/Templates/Themes/' + String.firstLetterToUpperCase(q(node).property('theme')) + '.html'}
+
+    attributes.class = TYPO3.TypoScript:RawArray {
+        theme = ${'theme-' + q(node).property('theme')}
+        lightbox = 'lightbox-images'
+    }
+
     requestFormat = ${request.format}
     imagesSelected = ${q(node).property('tag') || Type.isArray(q(node).property('assets'))}
 }

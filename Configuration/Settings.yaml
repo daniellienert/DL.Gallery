@@ -15,6 +15,9 @@ DL:
       bootstrapLightbox:
         label: 'Bootstrap with Lightbox'
         themeSettings:
+          galleryCSS: 'resource://DL.Gallery/Public/Styles/BootstrapLightbox.css'
+          galleryJS: 'resource://DL.Gallery/Public/JavaScript/BootstrapLightbox.min.js'
+
           columnClass: 'col-md-4'
           imageVariants:
             thumb:
@@ -31,3 +34,16 @@ DL:
               height:
               allowCropping:
               allowUpScaling:
+
+      justified:
+        label: 'Justified Gallery'
+        themeSettings:
+          galleryCSS: 'resource://DL.Gallery/Public/Styles/JustifiedGallery.css'
+          galleryJS: 'resource://DL.Gallery/Public/JavaScript/JustifiedGallery.min.js'
+          imageVariants:
+            thumb:
+              maximumWidth: 800
+              maximumHeight: 800
+            large:
+              maximumWidth: 2000
+              maximumHeight: 1200

@@ -10,7 +10,7 @@ images_dir = "../Public/Images"			# the folder with your images (relative path)
 fonts_dir = "../Public/Styles/Fonts"	# the folder with your fonts
 
 # preferred output style (can be overridden via the command line)
-output_style = :compressed 				# alternative: :expanded
+output_style = :expanded 				# alternative: :expanded
 
 # environments
 environment = :production
