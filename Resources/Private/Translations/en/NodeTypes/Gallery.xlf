@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file original="" product-name="DL.Gallery" source-language="en" datatype="plaintext">
+		<body>
+			<trans-unit id="ui.label" xml:space="preserve">
+				<source>Gallery</source>
+			</trans-unit>
+			<trans-unit id="groups.sourceBySelectedAssets" xml:space="preserve">
+				<source>Select Images</source>
+			</trans-unit>
+			<trans-unit id="groups.sourceByTags" xml:space="preserve">
+				<source>Images by Collection/Tag</source>
+			</trans-unit>
+			<trans-unit id="groups.presentation" xml:space="preserve">
+				<source>Presentation</source>
+			</trans-unit>
+			<trans-unit id="properties.assets" xml:space="preserve">
+				<source>Images</source>
+			</trans-unit>
+			<trans-unit id="properties.tag" xml:space="preserve">
+				<source>Tag</source>
+			</trans-unit>
+			<trans-unit id="properties.assetCollection" xml:space="preserve">
+				<source>Asset collection</source>
+			</trans-unit>
+			<trans-unit id="properties.sortingField" xml:space="preserve">
+				<source>Sorting Field</source>
+			</trans-unit>
+			<trans-unit id="properties.sortingField.selectBoxEditor.values.resource.filename" xml:space="preserve">
+				<source>Name</source>
+			</trans-unit>
+			<trans-unit id="properties.sortingField.selectBoxEditor.values.lastModified" xml:space="preserve">
+				<source>Last Modified</source>
+			</trans-unit>
+			<trans-unit id="properties.sortingDirection" xml:space="preserve">
+				<source>Sorting Direction</source>
+			</trans-unit>
+			<trans-unit id="properties.sortingDirection.selectBoxEditor.values.ASC" xml:space="preserve">
+				<source>Ascending</source>
+			</trans-unit>
+			<trans-unit id="properties.sortingDirection.selectBoxEditor.values.DESC" xml:space="preserve">
+				<source>Descending</source>
+			</trans-unit>
+			<trans-unit id="properties.theme" xml:space="preserve">
+				<source>Theme</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
+
+
