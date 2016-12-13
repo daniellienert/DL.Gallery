@@ -1,0 +1,41 @@
+{namespace g = DL\Gallery\ViewHelpers}
+{namespace media=TYPO3\Media\ViewHelpers}
+
+
+<div {attributes -> f:format.raw()}>
+    <f:if condition="{imagesSelected}">
+        <f:then>
+            <div class="dl-gallery carousel-lightbox" itemscope itemtype="http://schema.org/ImageGallery">
+                <div id="carousel-{node.identifier}" class="carousel slide" data-ride="carousel" data-interval="false">
+                    <div class="carousel-inner" role="listbox">
+                        <g:gallery galleryNode="{node}">
+                            <figure itemprop="associatedMedia" itemtype="http://schema.org/ImageObject" class="carousel-item {f:if(condition: isFirst, then: 'active')} typo3-neos-nodetypes-image">
+                                <a href="{g:imageData(image:image, theme:'bootstrapCarousel', imageVariant:'large', key:'src')}" itemprop="contentUrl" data-size="{g:imageData(image:image theme:'bootstrapCarousel', imageVariant:'large', key:'width')}x{g:imageData(image:image theme:'bootstrapCarousel', imageVariant:'large', key:'height')}">
+                                    <g:image image="{image}" theme="bootstrapCarousel" imageVariant="thumb" additionalAttributes="{itemprop: 'thumbnail'}"/>
+                                </a>
+                                <figcaption itemprop="caption description">{g:imageData(image:image, theme:'bootstrapCarousel', imageVariant:'large', key:'caption')}</figcaption>
+                            </figure>
+                        </g:gallery>
+                     </div>
+                    <a class="left carousel-control" data-target="#carousel-{node.identifier}" role="button" data-slide="prev">
+                        <span class="icon-prev" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" data-target="#carousel-{node.identifier}" role="button" data-slide="next">
+                        <span class="icon-next" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+        </f:then>
+        <f:else>
+            <f:if condition="{node.context.workspace.name} != 'live'">
+                <div>Please select select some images or a tag in the inspector to display a gallery.</div>
+            </f:if>
+        </f:else>
+    </f:if>
+</div>
+
+<f:if condition="{requestFormat} == 'html'">
+    <f:render partial="PhotoSwipe" />
+</f:if>

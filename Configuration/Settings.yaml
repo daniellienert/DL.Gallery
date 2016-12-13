@@ -57,3 +57,26 @@ DL:
             large:
               maximumWidth: 2000
               maximumHeight: 1200
+
+      bootstrapCarousel:
+        label: 'Bootstrap Carousel with Lightbox'
+        themeSettings:
+          galleryCSS: 'resource://DL.Gallery/Public/Styles/BootstrapLightbox.css'
+          galleryJS: 'resource://DL.Gallery/Public/JavaScript/BootstrapLightbox.min.js'
+
+          imageVariants:
+            thumb:
+              maximumWidth:
+              maximumHeight:
+              width: 900
+              height: 600
+              allowCropping: true
+              allowUpScaling:
+            large:
+              maximumWidth: 2000
+              maximumHeight: 1200
+              width:
+              height:
+              allowCropping:
+              allowUpScaling:
+
