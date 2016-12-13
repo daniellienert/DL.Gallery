@@ -33,6 +33,16 @@
           editorOptions:
             dataSourceIdentifier: dl-gallery-tags
         reloadIfChanged: true
+    assetCollection:
+      type: 'TYPO3\Media\Domain\Model\AssetCollection'
+      ui:
+        label: Asset collections
+        inspector:
+          group: sourceByTags
+          editor: Content/Inspector/Editors/SelectBoxEditor
+          editorOptions:
+            dataSourceIdentifier: dl-gallery-assetcollections
+        reloadIfChanged: true
     sortingField:
       type: string
       defaultValue: 'resource.filename'

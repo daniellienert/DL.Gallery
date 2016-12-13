@@ -4,6 +4,14 @@ TYPO3:
       autoInclude:
         'DL.Gallery': TRUE
 
+    userInterface:
+      inspector:
+        dataTypes:
+          'TYPO3\Media\Domain\Model\AssetCollection':
+            typeConverter: 'TYPO3\Neos\TypeConverter\EntityToIdentityConverter'
+            editor: 'TYPO3.Neos/Inspector/Editors/SelectBoxEditor'
+            editorOptions:
+              dataSourceIdentifier: 'dl-gallery-assetcollections'
 
 DL:
   Gallery:
