@@ -22,6 +22,7 @@ namespace DL\Gallery\ViewHelpers;
 
 use TYPO3\Flow\Annotations as Flow;
 use TYPO3\Flow\Persistence\QueryInterface;
+use TYPO3\Media\Domain\Model\AssetCollection;
 use TYPO3\Media\Domain\Model\Image;
 use TYPO3\Media\Domain\Model\Tag;
 use TYPO3\TYPO3CR\Domain\Model\Node;
@@ -68,11 +69,12 @@ class GalleryViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractTagBasedVie
 
         $images = array_merge(
             $this->selectImagesByTag($galleryNode), 
+            $this->selectImagesByAssetCollection($galleryNode),
             $this->getSelectedImages($galleryNode)
         );
 
         if (count($images) === 0) {
-            return 'No images are assigned to the selected tag. Please go to the media management and assign images to this tag.';
+            return 'No images have been selected or no images have been assigned to the selected tag or asset collection.';
         }
 
         $result = '';
@@ -134,6 +136,30 @@ class GalleryViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractTagBasedVie
         ]);
 
         $images = $this->imageRepository->findByTag($tag)->toArray();
+
+        return $images;
+    }
+
+    /**
+     * @param Node $galleryNode
+     * @return array
+     */
+    protected function selectImagesByAssetCollection(Node $galleryNode)
+    {
+        $assetCollection = $galleryNode->getProperty('assetCollection');
+
+        if(!($assetCollection instanceof AssetCollection)) {
+            return [];
+        }
+
+        $sortingField = $galleryNode->getProperty('sortingField') ?: 'resource.filename';
+        $sortingDirection = $galleryNode->getProperty('sortingDirection') === QueryInterface::ORDER_DESCENDING ? QueryInterface::ORDER_DESCENDING : QueryInterface::ORDER_ASCENDING;
+
+        $this->imageRepository->setDefaultOrderings([
+            $sortingField => $sortingDirection
+        ]);
+
+        $images = $this->imageRepository->findByAssetCollection($assetCollection)->toArray();
 
         return $images;
     }
