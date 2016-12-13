@@ -43,6 +43,12 @@ class GalleryViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractTagBasedVie
     protected $imageRepository;
 
     /**
+     * @var \TYPO3\Flow\I18n\Translator
+     * @Flow\Inject
+     */
+    protected $translator;
+
+    /**
      * @var array
      */
     protected $settings;
@@ -73,8 +79,9 @@ class GalleryViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractTagBasedVie
             $this->getSelectedImages($galleryNode)
         );
 
+
         if (count($images) === 0) {
-            return 'No images have been selected or no images have been assigned to the selected tag or asset collection.';
+            return $this->translator->translateById('gallery.noImagesSelected', [], null, null, 'Main', 'DL.Gallery');
         }
 
         $result = '';

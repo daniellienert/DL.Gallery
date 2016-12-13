@@ -3,8 +3,10 @@ TYPO3:
     typoScript:
       autoInclude:
         'DL.Gallery': TRUE
-
     userInterface:
+      translation:
+        autoInclude:
+          'DL.Gallery': ['NodeTypes/*']
       inspector:
         dataTypes:
           'TYPO3\Media\Domain\Model\AssetCollection':
