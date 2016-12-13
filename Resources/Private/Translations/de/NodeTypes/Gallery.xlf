@@ -29,6 +29,9 @@
 			<trans-unit id="properties.sortingField.selectBoxEditor.values.resource.filename" xml:space="preserve">
 				<target>Name</target>
 			</trans-unit>
+			<trans-unit id="properties.sortingField.selectBoxEditor.values.title" xml:space="preserve">
+				<target>Titel</target>
+			</trans-unit>
 			<trans-unit id="properties.sortingField.selectBoxEditor.values.lastModified" xml:space="preserve">
 				<target>Zuletzt geändert</target>
 			</trans-unit>

@@ -54,6 +54,8 @@
              values:
               'resource.filename':
                 label: i18n
+              title:
+                label: i18n
               lastModified:
                 label: i18n
         reloadIfChanged: true
