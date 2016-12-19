@@ -20,11 +20,11 @@ namespace DL\Gallery\ViewHelpers;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
-use TYPO3\Flow\Annotations as Flow;
-use TYPO3\Media\Domain\Model\ImageInterface;
+use Neos\Flow\Annotations as Flow;
+use Neos\Media\Domain\Model\ImageInterface;
 
 
-class ImageViewHelper extends \TYPO3\Media\ViewHelpers\ImageViewHelper
+class ImageViewHelper extends \Neos\Media\ViewHelpers\ImageViewHelper
 {
 
 

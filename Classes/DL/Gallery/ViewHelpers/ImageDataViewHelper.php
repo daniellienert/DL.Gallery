@@ -20,13 +20,21 @@ namespace DL\Gallery\ViewHelpers;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
-use TYPO3\Flow\Annotations as Flow;
-use TYPO3\Fluid\Core\ViewHelper\AbstractViewHelper;
-use TYPO3\Media\Domain\Model\ImageInterface;
-use TYPO3\Media\Domain\Model\ThumbnailConfiguration;
+use Neos\Flow\Annotations as Flow;
+use Neos\FluidAdaptor\Core\ViewHelper\AbstractViewHelper;
+use Neos\Media\Domain\Model\ImageInterface;
+use Neos\Media\Domain\Model\ThumbnailConfiguration;
 
 class ImageDataViewHelper extends AbstractViewHelper
 {
+
+    
+	/**
+	 * NOTE: This property has been introduced via code migration to ensure backwards-compatibility.
+	 * @see AbstractViewHelper::isOutputEscapingEnabled()
+	 * @var boolean
+	 */
+	protected $escapeOutput = FALSE;
 
     /**
      * @var array
@@ -35,13 +43,13 @@ class ImageDataViewHelper extends AbstractViewHelper
 
     /**
      * @Flow\Inject
-     * @var \TYPO3\Media\Domain\Service\ThumbnailService
+     * @var \Neos\Media\Domain\Service\ThumbnailService
      */
     protected $thumbnailService;
 
     /**
      * @Flow\Inject
-     * @var \TYPO3\Media\Domain\Service\AssetService
+     * @var \Neos\Media\Domain\Service\AssetService
      */
     protected $assetService;
 
@@ -83,7 +91,7 @@ class ImageDataViewHelper extends AbstractViewHelper
      * @param bool $allowCropping
      * @param bool $allowUpScaling
      * @return array|null
-     * @throws \TYPO3\Media\Exception\AssetServiceException
+     * @throws \Neos\Media\Exception\AssetServiceException
      */
     public function render(ImageInterface $image = null, $width = null, $maximumWidth = null, $height = null, $maximumHeight = null, $allowCropping = false, $allowUpScaling = false)
     {

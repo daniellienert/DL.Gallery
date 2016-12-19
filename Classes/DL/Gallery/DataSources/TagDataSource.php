@@ -21,9 +21,9 @@ namespace DL\Gallery\DataSources;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
-use TYPO3\Neos\Service\DataSource\AbstractDataSource;
-use TYPO3\TYPO3CR\Domain\Model\NodeInterface;
-use TYPO3\Flow\Annotations as Flow;
+use Neos\Neos\Service\DataSource\AbstractDataSource;
+use Neos\ContentRepository\Domain\Model\NodeInterface;
+use Neos\Flow\Annotations as Flow;
 
 class TagDataSource extends AbstractDataSource
 {
@@ -36,14 +36,14 @@ class TagDataSource extends AbstractDataSource
 
     /**
      * @Flow\Inject
-     * @var \TYPO3\Flow\Persistence\PersistenceManagerInterface
+     * @var \Neos\Flow\Persistence\PersistenceManagerInterface
      */
     protected $persistenceManager;
 
 
     /**
      * @Flow\inject
-     * @var \TYPO3\Media\Domain\Repository\TagRepository
+     * @var \Neos\Media\Domain\Repository\TagRepository
      */
     protected $tagRepository;
 
@@ -51,7 +51,7 @@ class TagDataSource extends AbstractDataSource
     /**
      * @param NodeInterface|null $node
      * @param array $arguments
-     * @return \TYPO3\Flow\Persistence\QueryResultInterface
+     * @return \Neos\Flow\Persistence\QueryResultInterface
      */
     public function getData(NodeInterface $node = null, array $arguments)
     {
@@ -60,7 +60,7 @@ class TagDataSource extends AbstractDataSource
         $tags['~']['label'] = '';
 
         foreach ($tagCollection as $tag) {
-            /** @var \TYPO3\Media\Domain\Model\Tag $tag */
+            /** @var \Neos\Media\Domain\Model\Tag $tag */
             $tags[$this->persistenceManager->getIdentifierByObject($tag)] = $tag;
         }
 

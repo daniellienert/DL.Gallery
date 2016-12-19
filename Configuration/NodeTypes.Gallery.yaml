@@ -1,6 +1,7 @@
+
 'DL.Gallery:Gallery':
   superTypes:
-    'TYPO3.Neos:Content': true
+    'Neos.Neos:Content': true
   ui:
     label: Gallery
     icon: icon-picture
@@ -8,21 +9,19 @@
     inspector:
       groups:
         sourceBySelectedAssets:
-          label: Select Images
+          label: 'Select Images'
         sourceByTags:
-          label: Source by Tags
+          label: 'Source by Tags'
         presentation:
           label: Presentation
   properties:
-
     assets:
-      type: array<TYPO3\Media\Domain\Model\Asset>
+      type: array<Neos\Media\Domain\Model\Asset>
       ui:
         inspector:
           group: sourceBySelectedAssets
         label: Images
-        reloadIfChanged: TRUE
-
+        reloadIfChanged: true
     tag:
       type: string
       ui:
@@ -35,35 +34,34 @@
         reloadIfChanged: true
     sortingField:
       type: string
-      defaultValue: 'resource.filename'
+      defaultValue: resource.filename
       ui:
-        label: Sorting Field
+        label: 'Sorting Field'
         inspector:
           group: sourceByTags
           editor: Content/Inspector/Editors/SelectBoxEditor
           editorOptions:
-             values:
-              'resource.filename':
+            values:
+              resource.filename:
                 label: Name
               lastModified:
-                label: Last Modiefied
+                label: 'Last Modiefied'
         reloadIfChanged: true
     sortingDirection:
       type: string
       defaultValue: ASC
       ui:
-        label: Sorting Direction
+        label: 'Sorting Direction'
         inspector:
           group: sourceByTags
           editor: Content/Inspector/Editors/SelectBoxEditor
           editorOptions:
-             values:
+            values:
               ASC:
                 label: Ascending
               DESC:
                 label: Descending
         reloadIfChanged: true
-
     theme:
       type: string
       defaultValue: bootstrapLightbox

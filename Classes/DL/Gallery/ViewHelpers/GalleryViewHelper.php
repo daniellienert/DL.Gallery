@@ -20,24 +20,24 @@ namespace DL\Gallery\ViewHelpers;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
-use TYPO3\Flow\Annotations as Flow;
-use TYPO3\Flow\Persistence\QueryInterface;
-use TYPO3\Media\Domain\Model\Image;
-use TYPO3\Media\Domain\Model\Tag;
-use TYPO3\TYPO3CR\Domain\Model\Node;
+use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Persistence\QueryInterface;
+use Neos\Media\Domain\Model\Image;
+use Neos\Media\Domain\Model\Tag;
+use Neos\ContentRepository\Domain\Model\Node;
 
-class GalleryViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
+class GalleryViewHelper extends \Neos\FluidAdaptor\Core\ViewHelper\AbstractTagBasedViewHelper
 {
 
     /**
      * @Flow\Inject
-     * @var \TYPO3\Media\Domain\Repository\TagRepository
+     * @var \Neos\Media\Domain\Repository\TagRepository
      */
     protected $tagRepository;
 
     /**
      * @Flow\Inject
-     * @var \TYPO3\Media\Domain\Repository\ImageRepository
+     * @var \Neos\Media\Domain\Repository\ImageRepository
      */
     protected $imageRepository;
 
@@ -59,7 +59,7 @@ class GalleryViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractTagBasedVie
     /**
      * @param Node $galleryNode
      * @return string
-     * @throws \TYPO3\Fluid\Core\ViewHelper\Exception\InvalidVariableException
+     * @throws \Neos\FluidAdaptor\Core\ViewHelper\Exception\InvalidVariableException
      */
     public function render(Node $galleryNode)
     {
