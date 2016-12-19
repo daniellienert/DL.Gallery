@@ -1,40 +1,30 @@
-TYPO3:
-  Neos:
-    typoScript:
-      autoInclude:
-        'DL.Gallery': TRUE
-
 
 DL:
   Gallery:
-
     loadGalleryCSS: true
     loadGalleryJS: true
-
     themes:
       bootstrapLightbox:
         label: 'Bootstrap with Lightbox'
         themeSettings:
           galleryCSS: 'resource://DL.Gallery/Public/Styles/BootstrapLightbox.css'
           galleryJS: 'resource://DL.Gallery/Public/JavaScript/BootstrapLightbox.min.js'
-
-          columnClass: 'col-md-4'
+          columnClass: col-md-4
           imageVariants:
             thumb:
-              maximumWidth:
-              maximumHeight:
+              maximumWidth: null
+              maximumHeight: null
               width: 500
               height: 500
               allowCropping: true
-              allowUpScaling:
+              allowUpScaling: null
             large:
               maximumWidth: 2000
               maximumHeight: 1200
-              width:
-              height:
-              allowCropping:
-              allowUpScaling:
-
+              width: null
+              height: null
+              allowCropping: null
+              allowUpScaling: null
       justified:
         label: 'Justified Gallery'
         themeSettings:
@@ -47,3 +37,8 @@ DL:
             large:
               maximumWidth: 2000
               maximumHeight: 1200
+Neos:
+  Neos:
+    typoScript:
+      autoInclude:
+        DL.Gallery: true

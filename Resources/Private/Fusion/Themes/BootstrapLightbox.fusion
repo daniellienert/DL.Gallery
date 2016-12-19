@@ -1,15 +1,15 @@
-prototype(TYPO3.Neos:Page) {
-    @context.galleryInstanceIsPresent = ${q(node).children('[instanceof TYPO3.Neos:ContentCollection]').find('[instanceof DL.Gallery:Gallery]').count() > 0}
+prototype(Neos.Neos:Page) {
+    @context.galleryInstanceIsPresent = ${q(node).children('[instanceof Neos.Neos:ContentCollection]').find('[instanceof DL.Gallery:Gallery]').count() > 0}
 
-    @context.theme =  ${q(node).children('[instanceof TYPO3.Neos:ContentCollection]').find('[instanceof DL.Gallery:Gallery]').first().property('theme')}
+    @context.theme =  ${q(node).children('[instanceof Neos.Neos:ContentCollection]').find('[instanceof DL.Gallery:Gallery]').first().property('theme')}
     @context.theme.@if.galleryInstanceIsPresent = ${galleryInstanceIsPresent}
 
-    head.stylesheets.gallery = TYPO3.TypoScript:Tag {
+    head.stylesheets.gallery = Neos.Fusion:Tag {
         tagName = 'link'
 
         attributes {
             rel = 'stylesheet'
-            href = TYPO3.TypoScript:ResourceUri {
+            href = Neos.Fusion:ResourceUri {
                 path = ${Configuration.setting('DL.Gallery.themes.' + theme + '.themeSettings.galleryCSS')}
             }
         }
@@ -19,11 +19,11 @@ prototype(TYPO3.Neos:Page) {
         @position = 'after site'
     }
 
-    body.javascripts.gallery = TYPO3.TypoScript:Tag {
+    body.javascripts.gallery = Neos.Fusion:Tag {
         tagName = 'script'
 
         attributes {
-            src = TYPO3.TypoScript:ResourceUri {
+            src = Neos.Fusion:ResourceUri {
                 path = ${Configuration.setting('DL.Gallery.themes.' + theme + '.themeSettings.galleryJS')}
             }
         }
