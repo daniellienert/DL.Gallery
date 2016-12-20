@@ -7,7 +7,7 @@
     ],
     "require": {
         "neos/neos": "~3.0|dev-master",
-        "neos/neos-nodetypes": "*"
+        "neos/nodetypes": "*"
     },
     "autoload": {
         "psr-0": {
