@@ -6,8 +6,8 @@
         "MIT"
     ],
     "require": {
-        "typo3/neos": "~3.0|dev-master",
-        "typo3/neos-nodetypes": "*"
+        "neos/neos": "~3.0|dev-master",
+        "neos/neos-nodetypes": "*"
     },
     "autoload": {
         "psr-0": {
