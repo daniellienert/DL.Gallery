@@ -1,25 +1,15 @@
 <?php
-
 namespace DL\Gallery\DataSources;
 
-/***************************************************************
- *  Copyright (C) 2015 Daniel Lienert
+/*
+ * This file is part of the DL.Gallery package.
  *
- *  This script is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser General Public License as published
- *  by the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
+ * (c) Daniel Lienert 2016
  *
- *  This script is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+ * This package is Open Source Software. For the full copyright and license
+ * information, please view the LICENSE file which was distributed with this
+ * source code.
+ */
 
 use Neos\Neos\Service\DataSource\AbstractDataSource;
 use Neos\ContentRepository\Domain\Model\NodeInterface;
@@ -50,7 +40,7 @@ class ThemeDataSource extends AbstractDataSource
     /**
      * @param NodeInterface|null $node
      * @param array $arguments
-     * @return \Neos\Flow\Persistence\QueryResultInterface
+     * @return array
      */
     public function getData(NodeInterface $node = null, array $arguments)
     {
@@ -64,7 +54,6 @@ class ThemeDataSource extends AbstractDataSource
         }
 
         return $themes;
-
     }
 
 }

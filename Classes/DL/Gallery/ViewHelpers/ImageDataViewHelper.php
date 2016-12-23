@@ -1,24 +1,15 @@
 <?php
 namespace DL\Gallery\ViewHelpers;
 
-/***************************************************************
- *  Copyright (C) 2015 Daniel Lienert
+/*
+ * This file is part of the DL.Gallery package.
  *
- *  This script is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser General Public License as published
- *  by the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
+ * (c) Daniel Lienert 2016
  *
- *  This script is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+ * This package is Open Source Software. For the full copyright and license
+ * information, please view the LICENSE file which was distributed with this
+ * source code.
+ */
 
 use Neos\Flow\Annotations as Flow;
 use Neos\FluidAdaptor\Core\ViewHelper\AbstractViewHelper;
@@ -27,15 +18,6 @@ use Neos\Media\Domain\Model\ThumbnailConfiguration;
 
 class ImageDataViewHelper extends AbstractViewHelper
 {
-
-    
-	/**
-	 * NOTE: This property has been introduced via code migration to ensure backwards-compatibility.
-	 * @see AbstractViewHelper::isOutputEscapingEnabled()
-	 * @var boolean
-	 */
-	protected $escapeOutput = FALSE;
-
     /**
      * @var array
      */
@@ -83,7 +65,7 @@ class ImageDataViewHelper extends AbstractViewHelper
 
 
     /**
-     * @param ImageInterface|null $image
+     * @param ImageInterface $image
      * @param integer $width
      * @param integer $maximumWidth
      * @param integer $height
@@ -91,11 +73,9 @@ class ImageDataViewHelper extends AbstractViewHelper
      * @param bool $allowCropping
      * @param bool $allowUpScaling
      * @return array|null
-     * @throws \Neos\Media\Exception\AssetServiceException
      */
-    public function render(ImageInterface $image = null, $width = null, $maximumWidth = null, $height = null, $maximumHeight = null, $allowCropping = false, $allowUpScaling = false)
+    public function render(ImageInterface $image, $width = null, $maximumWidth = null, $height = null, $maximumHeight = null, $allowCropping = false, $allowUpScaling = false)
     {
-
         if ($this->hasArgument('theme') && $this->hasArgument('imageVariant')) {
             $themeSettings = $this->getSettingsForCurrentTheme($this->arguments['theme']);
 

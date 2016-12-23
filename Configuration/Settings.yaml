@@ -1,4 +1,3 @@
-
 DL:
   Gallery:
     loadGalleryCSS: true
@@ -39,6 +38,6 @@ DL:
               maximumHeight: 1200
 Neos:
   Neos:
-    typoScript:
+    fusion:
       autoInclude:
         DL.Gallery: true

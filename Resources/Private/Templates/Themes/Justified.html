@@ -7,7 +7,8 @@
         <f:then>
             <g:gallery galleryNode="{node}">
                 <figure itemprop="associatedMedia" itemtype="http://schema.org/ImageObject">
-                    <a href="{g:imageData(image:image theme:'justified', imageVariant:'large', key:'src')}" itemprop="contentUrl" data-size="{g:imageData(image:image theme:'justified', imageVariant:'large', key:'width')}x{g:imageData(image:image theme:'justified', imageVariant:'large', key:'height')}">
+                    <a href="{g:imageData(image:image, theme:'justified', imageVariant:'large', key:'src')}" itemprop="contentUrl"
+                            data-size="{g:imageData(image:image, theme:'justified', imageVariant:'large', key:'width')}x{g:imageData(image:image, theme:'justified', imageVariant:'large', key:'height')}">
                         <g:image image="{image}" theme="justified" imageVariant="thumb" additionalAttributes="{itemprop: 'thumbnail'}"/>
                     </a>
                     <figcaption>{image.title}</figcaption>

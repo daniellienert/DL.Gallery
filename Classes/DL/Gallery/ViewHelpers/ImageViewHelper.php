@@ -1,33 +1,21 @@
 <?php
 namespace DL\Gallery\ViewHelpers;
 
-/***************************************************************
- *  Copyright (C) 2015 Daniel Lienert
+/*
+ * This file is part of the DL.Gallery package.
  *
- *  This script is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser General Public License as published
- *  by the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
+ * (c) Daniel Lienert 2016
  *
- *  This script is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+ * This package is Open Source Software. For the full copyright and license
+ * information, please view the LICENSE file which was distributed with this
+ * source code.
+ */
 
 use Neos\Flow\Annotations as Flow;
 use Neos\Media\Domain\Model\ImageInterface;
 
-
 class ImageViewHelper extends \Neos\Media\ViewHelpers\ImageViewHelper
 {
-
-
     /**
      * @var array
      */
@@ -42,7 +30,6 @@ class ImageViewHelper extends \Neos\Media\ViewHelpers\ImageViewHelper
         $this->settings = $settings;
     }
 
-
     /**
      * @return void
      */
@@ -53,7 +40,6 @@ class ImageViewHelper extends \Neos\Media\ViewHelpers\ImageViewHelper
         $this->registerTagAttribute('imageVariant', 'string', 'The name of a defined resolution', false);
         $this->overrideArgument('alt', 'string', 'The alt attribute', false);
     }
-
 
     public function render(ImageInterface $image = null, $width = null, $maximumWidth = null, $height = null, $maximumHeight = null, $allowCropping = false, $allowUpScaling = false, $async = false, $preset = null)
     {
@@ -79,7 +65,6 @@ class ImageViewHelper extends \Neos\Media\ViewHelpers\ImageViewHelper
 
         return parent::render($image, $width, $maximumWidth, $height, $maximumHeight, $allowCropping, $allowUpScaling, $async, $preset);
     }
-
 
     /**
      * @param $theme
