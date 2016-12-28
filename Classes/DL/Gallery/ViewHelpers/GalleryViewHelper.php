@@ -70,15 +70,16 @@ class GalleryViewHelper extends AbstractTagBasedViewHelper
         $result = '';
 
         foreach ($images as $image) {
+            if ($image instanceof Image) {
+                /** @var Image $image */
+                $this->templateVariableContainer->add('image', $image);
+                $this->templateVariableContainer->add('imageMeta', $this->buildImageMetaDataArray($image));
 
-            /** @var Image $image */
-            $this->templateVariableContainer->add('image', $image);
-            $this->templateVariableContainer->add('imageMeta', $this->buildImageMetaDataArray($image));
+                $result .= $this->renderChildren();
 
-            $result .= $this->renderChildren();
-
-            $this->templateVariableContainer->remove('image');
-            $this->templateVariableContainer->remove('imageMeta');
+                $this->templateVariableContainer->remove('image');
+                $this->templateVariableContainer->remove('imageMeta');
+            }
         }
 
         $this->templateVariableContainer->remove('themeSettings');
