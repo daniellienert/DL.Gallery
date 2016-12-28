@@ -78,14 +78,16 @@ class GalleryViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractTagBasedVie
         $result = '';
 
         foreach ($images as $image) {
-            /** @var Image $image */
-            $this->templateVariableContainer->add('image', $image);
-            $this->templateVariableContainer->add('imageMeta', $this->buildImageMetaDataArray($image));
+            if ($image instanceof Image) {
+                /** @var Image $image */
+                $this->templateVariableContainer->add('image', $image);
+                $this->templateVariableContainer->add('imageMeta', $this->buildImageMetaDataArray($image));
 
-            $result .= $this->renderChildren();
+                $result .= $this->renderChildren();
 
-            $this->templateVariableContainer->remove('image');
-            $this->templateVariableContainer->remove('imageMeta');
+                $this->templateVariableContainer->remove('image');
+                $this->templateVariableContainer->remove('imageMeta');
+            }
         }
 
         $this->templateVariableContainer->remove('themeSettings');
