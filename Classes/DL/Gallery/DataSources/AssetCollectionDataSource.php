@@ -5,7 +5,7 @@ namespace DL\Gallery\DataSources;
 /*
  * This file is part of the DL.Gallery package.
  *
- * (c) Daniel Lienert 2016
+ * (c) Daniel Lienert and others 2016
  *
  * This package is Open Source Software. For the full copyright and license
  * information, please view the LICENSE file which was distributed with this
@@ -44,15 +44,14 @@ class AssetCollectionDataSource extends AbstractDataSource
 
 
     /**
-     * @param NodeInterface|null $node
+     * @param NodeInterface $node
      * @param array $arguments
      * @return array
      */
     public function getData(NodeInterface $node = null, array $arguments)
     {
-        $options = [['label' => '-', 'value' => '~']];
+        $options = [['label' => '~', 'value' => '-']];
         $assetCollections = $this->assetCollectionRepository->findAll();
-
         foreach ($assetCollections as $assetCollection) {
             /** @var AssetCollection $assetCollection */
             $options[] = [
