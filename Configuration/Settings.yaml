@@ -1,3 +1,22 @@
+Neos:
+  Neos:
+    fusion:
+      autoInclude:
+        DL.Gallery: true
+    userInterface:
+      translation:
+        autoInclude:
+          DL.Gallery:
+            - 'NodeTypes/*'
+
+      inspector:
+        dataTypes:
+          'Neos\Media\Domain\Model\AssetCollection':
+            typeConverter: 'Neos\Neos\TypeConverter\EntityToIdentityConverter'
+            editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+            editorOptions:
+              dataSourceIdentifier: 'dl-gallery-assetcollections'
+
 DL:
   Gallery:
     loadGalleryCSS: true
@@ -36,8 +55,4 @@ DL:
             large:
               maximumWidth: 2000
               maximumHeight: 1200
-Neos:
-  Neos:
-    fusion:
-      autoInclude:
-        DL.Gallery: true
+

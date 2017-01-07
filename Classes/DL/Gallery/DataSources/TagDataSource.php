@@ -45,9 +45,8 @@ class TagDataSource extends AbstractDataSource
      */
     public function getData(NodeInterface $node = null, array $arguments)
     {
-
         $tagCollection = $this->tagRepository->findAll();
-        $tags['~']['label'] = '';
+        $tags['~']['label'] = '-';
 
         foreach ($tagCollection as $tag) {
             /** @var \Neos\Media\Domain\Model\Tag $tag */

@@ -41,7 +41,19 @@ class ImageViewHelper extends \Neos\Media\ViewHelpers\ImageViewHelper
         $this->overrideArgument('alt', 'string', 'The alt attribute', false);
     }
 
-    public function render(ImageInterface $image = null, $width = null, $maximumWidth = null, $height = null, $maximumHeight = null, $allowCropping = false, $allowUpScaling = false, $async = false, $preset = null)
+    /**
+     * @param ImageInterface $image
+     * @param int $width
+     * @param int $maximumWidth
+     * @param int $height
+     * @param int $maximumHeight
+     * @param bool $allowCropping
+     * @param bool $allowUpScaling
+     * @param bool $async
+     * @param null $preset
+     * @return string
+     */
+    public function render(ImageInterface $image = null, $width = null, $maximumWidth = null, $height = null, $maximumHeight = null, $allowCropping = false, $allowUpScaling = false, $async = false, $preset = '')
     {
 
         if ($this->hasArgument('theme') && $this->hasArgument('imageVariant')) {
@@ -60,7 +72,7 @@ class ImageViewHelper extends \Neos\Media\ViewHelpers\ImageViewHelper
 
         $this->tag->addAttributes([
             'title' => $image->getTitle(),
-            'alt' => $image->getCaption()
+            'alt' => $image->getCaption() ? $image->getCaption() : $image->getTitle()
         ]);
 
         return parent::render($image, $width, $maximumWidth, $height, $maximumHeight, $allowCropping, $allowUpScaling, $async, $preset);

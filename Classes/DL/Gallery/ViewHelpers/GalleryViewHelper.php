@@ -12,32 +12,47 @@ namespace DL\Gallery\ViewHelpers;
  */
 
 use Neos\Flow\Annotations as Flow;
+use Neos\Flow\I18n\Translator;
 use Neos\Flow\Persistence\QueryInterface;
 use Neos\FluidAdaptor\Core\ViewHelper\AbstractTagBasedViewHelper;
-use Neos\Media\Domain\Model\AssetInterface;
+use Neos\Media\Domain\Model\AssetCollection;
 use Neos\Media\Domain\Model\Image;
 use Neos\Media\Domain\Model\Tag;
 use Neos\ContentRepository\Domain\Model\Node;
+use Neos\Media\Domain\Repository\ImageRepository;
+use Neos\Media\Domain\Repository\TagRepository;
+use Neos\Utility\ObjectAccess;
 
 class GalleryViewHelper extends AbstractTagBasedViewHelper
 {
 
     /**
      * @Flow\Inject
-     * @var \Neos\Media\Domain\Repository\TagRepository
+     * @var TagRepository
      */
     protected $tagRepository;
 
     /**
      * @Flow\Inject
-     * @var \Neos\Media\Domain\Repository\ImageRepository
+     * @var ImageRepository
      */
     protected $imageRepository;
+
+    /**
+     * @var Translator
+     * @Flow\Inject
+     */
+    protected $translator;
 
     /**
      * @var array
      */
     protected $settings;
+
+    /**
+     * @var Node
+     */
+    protected $galleryNode;
 
     /**
      * @param array $settings
@@ -48,37 +63,39 @@ class GalleryViewHelper extends AbstractTagBasedViewHelper
         $this->settings = $settings;
     }
 
-
     /**
      * @param Node $galleryNode
      * @return string
      */
     public function render(Node $galleryNode)
     {
-
+        $this->galleryNode = $galleryNode;
         $this->templateVariableContainer->add('themeSettings', $this->getSettingsForCurrentTheme());
 
+
         $images = array_merge(
-            $this->selectImagesByTag($galleryNode), 
-            $this->getSelectedImages($galleryNode)
+            $this->selectImagesByTag(),
+            $this->selectImagesByAssetCollection(),
+            $this->getSelectedImages()
         );
 
         if (count($images) === 0) {
-            return 'No images are assigned to the selected tag. Please go to the media management and assign images to this tag.';
+            return $this->translator->translateById('gallery.noImagesSelected', [], null, null, 'Main', 'DL.Gallery');
         }
 
         $result = '';
 
         foreach ($images as $image) {
+            if ($image instanceof Image) {
+                /** @var Image $image */
+                $this->templateVariableContainer->add('image', $image);
+                $this->templateVariableContainer->add('imageMeta', $this->buildImageMetaDataArray($image));
 
-            /** @var Image $image */
-            $this->templateVariableContainer->add('image', $image);
-            $this->templateVariableContainer->add('imageMeta', $this->buildImageMetaDataArray($image));
+                $result .= $this->renderChildren();
 
-            $result .= $this->renderChildren();
-
-            $this->templateVariableContainer->remove('image');
-            $this->templateVariableContainer->remove('imageMeta');
+                $this->templateVariableContainer->remove('image');
+                $this->templateVariableContainer->remove('imageMeta');
+            }
         }
 
         $this->templateVariableContainer->remove('themeSettings');
@@ -88,43 +105,58 @@ class GalleryViewHelper extends AbstractTagBasedViewHelper
 
 
     /**
-     * @param Node $galleryNode
      * @return array
      */
-    protected function getSelectedImages(Node $galleryNode)
+    protected function getSelectedImages()
     {
-        $assets = $galleryNode->getProperty('assets');
-        return is_array($assets) ? $assets : [];
+        $images = $this->galleryNode->getProperty('assets');
+
+        if(!is_array($images)) {
+            return [];
+        }
+
+        $this->sortImageObjects($images, $this->galleryNode->getProperty('sortingField'), $this->galleryNode->getProperty('sortingDirection'));
+        return $images;
     }
 
 
     /**
-     * @param Node $galleryNode
      * @return array
      */
-    protected function selectImagesByTag(Node $galleryNode)
+    protected function selectImagesByTag()
     {
-        $tagIdentifier = $galleryNode->getProperty('tag');
+        $tagIdentifier = $this->galleryNode->getProperty('tag');
 
-        if(empty($tagIdentifier) || $tagIdentifier === '~') {
+        if (empty($tagIdentifier) || $tagIdentifier === '~') {
             return [];
         }
 
         $tag = $this->tagRepository->findByIdentifier($tagIdentifier);
         /** @var Tag $tag */
-        
-        if(!($tag instanceof Tag)) {
+
+        if (!($tag instanceof Tag)) {
             return [];
         }
 
-        $sortingField = $galleryNode->getProperty('sortingField') ?: 'resource.filename';
-        $sortingDirection = $galleryNode->getProperty('sortingDirection') === QueryInterface::ORDER_DESCENDING ? QueryInterface::ORDER_DESCENDING : QueryInterface::ORDER_ASCENDING;
-
-        $this->imageRepository->setDefaultOrderings([
-            $sortingField => $sortingDirection
-        ]);
-
+        $this->setImageRepositoryDefaultOrderings();
         $images = $this->imageRepository->findByTag($tag)->toArray();
+
+        return $images;
+    }
+
+    /**
+     * @return array
+     */
+    protected function selectImagesByAssetCollection()
+    {
+        $assetCollection = $this->galleryNode->getProperty('assetCollection');
+
+        if (!($assetCollection instanceof AssetCollection)) {
+            return [];
+        }
+
+        $this->setImageRepositoryDefaultOrderings();
+        $images = $this->imageRepository->findByAssetCollection($assetCollection)->toArray();
 
         return $images;
     }
@@ -147,7 +179,32 @@ class GalleryViewHelper extends AbstractTagBasedViewHelper
      */
     protected function getSettingsForCurrentTheme()
     {
-        return $this->settings['themes']['bootstrapLightbox']['themeSettings'];
+        return $this->settings['themes'][$this->galleryNode->getProperty('theme')]['themeSettings'];
     }
 
+    /**
+     * @param array $images
+     * @param string $field
+     * @param string $direction
+     */
+    protected function sortImageObjects(array &$images, $field = 'resource.filename', $direction = 'ASC')
+    {
+        usort($images, function ($imageA, $imageB) use ($field, $direction) {
+            return strcmp(ObjectAccess::getPropertyPath($imageA, $field), ObjectAccess::getPropertyPath($imageB, $field));
+        });
+
+        if ($direction === 'DESC') {
+            rsort($images);
+        }
+    }
+
+    protected function setImageRepositoryDefaultOrderings()
+    {
+        $sortingField = $this->galleryNode->getProperty('sortingField') ?: 'resource.filename';
+        $sortingDirection = $this->galleryNode->getProperty('sortingDirection') === QueryInterface::ORDER_DESCENDING ? QueryInterface::ORDER_DESCENDING : QueryInterface::ORDER_ASCENDING;
+
+        $this->imageRepository->setDefaultOrderings([
+            $sortingField => $sortingDirection
+        ]);
+    }
 }

@@ -1,6 +1,6 @@
 {
     "name": "dl/gallery",
-    "type": "typo3-flow-plugin",
+    "type": "neos-plugin",
     "description": "Neos plugin to easily render image galleries",
     "license": [
         "MIT"

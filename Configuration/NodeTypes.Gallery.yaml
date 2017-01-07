@@ -1,31 +1,41 @@
-
 'DL.Gallery:Gallery':
   superTypes:
     'Neos.Neos:Content': true
   ui:
-    label: Gallery
+    label: i18n
     icon: icon-picture
     position: 300
     inspector:
       groups:
         sourceBySelectedAssets:
-          label: 'Select Images'
+          label: i18n
         sourceByTags:
-          label: 'Source by Tags'
+          label: i18n
         presentation:
-          label: Presentation
+          label: i18n
   properties:
     assets:
       type: array<Neos\Media\Domain\Model\Asset>
       ui:
         inspector:
           group: sourceBySelectedAssets
-        label: Images
+        label: i18n
+        reloadIfChanged: true
+
+    assetCollection:
+      type: Neos\Media\Domain\Model\AssetCollection
+      ui:
+        label: i18n
+        inspector:
+          group: sourceByTags
+          editor: Content/Inspector/Editors/SelectBoxEditor
+          editorOptions:
+            dataSourceIdentifier: dl-gallery-assetcollections
         reloadIfChanged: true
     tag:
       type: string
       ui:
-        label: Tags
+        label: i18n
         inspector:
           group: sourceByTags
           editor: Content/Inspector/Editors/SelectBoxEditor
@@ -36,37 +46,39 @@
       type: string
       defaultValue: resource.filename
       ui:
-        label: 'Sorting Field'
+        label: i18n
         inspector:
-          group: sourceByTags
-          editor: Content/Inspector/Editors/SelectBoxEditor
+          group: presentation
+          editor: Neos.Neos/Inspector/Editors/SelectBoxEditor
           editorOptions:
-            values:
-              resource.filename:
-                label: Name
+             values:
+              'resource.filename':
+                label: i18n
+              title:
+                label: i18n
               lastModified:
-                label: 'Last Modiefied'
+                label: i18n
         reloadIfChanged: true
     sortingDirection:
       type: string
       defaultValue: ASC
       ui:
-        label: 'Sorting Direction'
+        label: i18n
         inspector:
-          group: sourceByTags
-          editor: Content/Inspector/Editors/SelectBoxEditor
+          group: presentation
+          editor: Neos.Neos/Inspector/Editors/SelectBoxEditor
           editorOptions:
             values:
-              ASC:
-                label: Ascending
-              DESC:
-                label: Descending
+             ASC:
+               label: i18n
+             DESC:
+               label: i18n
         reloadIfChanged: true
     theme:
       type: string
       defaultValue: bootstrapLightbox
       ui:
-        label: Theme
+        label: i18n
         inspector:
           group: presentation
           editor: Content/Inspector/Editors/SelectBoxEditor

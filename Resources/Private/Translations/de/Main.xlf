@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file original="" product-name="DL.Gallery" source-language="en" datatype="plaintext">
+		<body>
+            <trans-unit id="gallery.noImagesSelected">
+                    <target>Es wurden weder Bilder noch eine Sammlung oder ein Tag ausgewählt oder die ausgewählte Sammlung oder der ausgewählte Tag enthält keine Bilder.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
