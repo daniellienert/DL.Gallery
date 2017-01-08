@@ -50,7 +50,7 @@ class AssetCollectionDataSource extends AbstractDataSource
      */
     public function getData(NodeInterface $node = null, array $arguments)
     {
-        $options = [['label' => '~', 'value' => '-']];
+        $options = [['label' => '-', 'value' => '']];
         $assetCollections = $this->assetCollectionRepository->findAll();
         foreach ($assetCollections as $assetCollection) {
             /** @var AssetCollection $assetCollection */
