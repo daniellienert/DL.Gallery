@@ -50,7 +50,7 @@ class ImageViewHelper extends \Neos\Media\ViewHelpers\ImageViewHelper
      * @param bool $allowCropping
      * @param bool $allowUpScaling
      * @param bool $async
-     * @param null $preset
+     * @param string $preset
      * @return string
      */
     public function render(ImageInterface $image = null, $width = null, $maximumWidth = null, $height = null, $maximumHeight = null, $allowCropping = false, $allowUpScaling = false, $async = false, $preset = '')
@@ -68,6 +68,9 @@ class ImageViewHelper extends \Neos\Media\ViewHelpers\ImageViewHelper
 
             $allowCropping = isset($imageVariantSettings['allowCropping']) ? $imageVariantSettings['allowCropping'] : false;
             $allowUpScaling = isset($imageVariantSettings['allowUpScaling']) ? $imageVariantSettings['allowUpScaling'] : false;
+
+            $this->tag->removeAttribute('theme');
+            $this->tag->removeAttribute('imageVariant');
         }
 
         $this->tag->addAttributes([
