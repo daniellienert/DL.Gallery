@@ -52,6 +52,8 @@
           editor: Neos.Neos/Inspector/Editors/SelectBoxEditor
           editorOptions:
              values:
+              'unsorted':
+                label: i18n
               'resource.filename':
                 label: i18n
               title:

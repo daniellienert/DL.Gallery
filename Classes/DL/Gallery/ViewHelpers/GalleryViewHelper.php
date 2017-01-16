@@ -115,7 +115,10 @@ class GalleryViewHelper extends AbstractTagBasedViewHelper
             return [];
         }
 
-        $this->sortImageObjects($images, $this->galleryNode->getProperty('sortingField'), $this->galleryNode->getProperty('sortingDirection'));
+        if($this->galleryNode->getProperty('sortingField') !== 'unsorted') {
+            $this->sortImageObjects($images, $this->galleryNode->getProperty('sortingField'), $this->galleryNode->getProperty('sortingDirection'));
+        }
+
         return $images;
     }
 
@@ -200,6 +203,10 @@ class GalleryViewHelper extends AbstractTagBasedViewHelper
 
     protected function setImageRepositoryDefaultOrderings()
     {
+        if($this->galleryNode->getProperty('sortingField') !== 'unsorted') {
+            return;
+        }
+
         $sortingField = $this->galleryNode->getProperty('sortingField') ?: 'resource.filename';
         $sortingDirection = $this->galleryNode->getProperty('sortingDirection') === QueryInterface::ORDER_DESCENDING ? QueryInterface::ORDER_DESCENDING : QueryInterface::ORDER_ASCENDING;
 

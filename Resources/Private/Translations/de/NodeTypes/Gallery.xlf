@@ -26,6 +26,9 @@
 			<trans-unit id="properties.sortingField" xml:space="preserve">
 				<target>Sortieren nach</target>
 			</trans-unit>
+			<trans-unit id="properties.sortingField.selectBoxEditor.values.unsorted" xml:space="preserve">
+				<target>Nicht sortiert</target>
+			</trans-unit>
 			<trans-unit id="properties.sortingField.selectBoxEditor.values.resource.filename" xml:space="preserve">
 				<target>Name</target>
 			</trans-unit>

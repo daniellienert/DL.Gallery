@@ -26,6 +26,9 @@
 			<trans-unit id="properties.sortingField" xml:space="preserve">
 				<source>Sorting Field</source>
 			</trans-unit>
+			<trans-unit id="properties.sortingField.selectBoxEditor.values.unsorted" xml:space="preserve">
+				<source>Unsorted</source>
+			</trans-unit>
 			<trans-unit id="properties.sortingField.selectBoxEditor.values.resource.filename" xml:space="preserve">
 				<source>Name</source>
 			</trans-unit>
