@@ -9,7 +9,7 @@
     <div class="dl-gallery lightbox-images" itemscope itemtype="http://schema.org/ImageGallery">
         <div class="row dl-gallery">
             <g:gallery galleryNode="{node}">
-                <figure itemprop="associatedMedia" itemtype="http://schema.org/ImageObject" class="{themeSettings.columnClass} typo3-neos-nodetypes-image">
+                <figure itemprop="associatedMedia" itemtype="http://schema.org/ImageObject" class="{themeSettings.columnClass} neos-nodetypes-image">
                     <a href="{g:imageData(image:image, theme:'bootstrapLightbox', imageVariant:'large', key:'src')}" itemprop="contentUrl" data-size="{g:imageData(image:image, theme:'bootstrapLightbox', imageVariant:'large', key:'width')}x{g:imageData(image:image, theme:'bootstrapLightbox', imageVariant:'large', key:'height')}">
                         <g:image image="{image}" theme="bootstrapLightbox" imageVariant="thumb" additionalAttributes="{itemprop: 'thumbnail'}"/>
                     </a>
