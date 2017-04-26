@@ -72,7 +72,6 @@ class GalleryViewHelper extends AbstractTagBasedViewHelper
         $this->galleryNode = $galleryNode;
         $this->templateVariableContainer->add('themeSettings', $this->getSettingsForCurrentTheme());
 
-
         $images = array_merge(
             $this->selectImagesByTag(),
             $this->selectImagesByAssetCollection(),
@@ -111,11 +110,11 @@ class GalleryViewHelper extends AbstractTagBasedViewHelper
     {
         $images = $this->galleryNode->getProperty('assets');
 
-        if(!is_array($images)) {
+        if (!is_array($images)) {
             return [];
         }
 
-        if($this->galleryNode->getProperty('sortingField') !== 'unsorted') {
+        if ($this->galleryNode->getProperty('sortingField') !== 'unsorted') {
             $this->sortImageObjects($images, $this->galleryNode->getProperty('sortingField'), $this->galleryNode->getProperty('sortingDirection'));
         }
 
@@ -192,7 +191,7 @@ class GalleryViewHelper extends AbstractTagBasedViewHelper
      */
     protected function sortImageObjects(array &$images, $field = 'resource.filename', $direction = 'ASC')
     {
-        usort($images, function ($imageA, $imageB) use ($field, $direction) {
+        usort($images, function ($imageA, $imageB) use ($field) {
             return strcmp(ObjectAccess::getPropertyPath($imageA, $field), ObjectAccess::getPropertyPath($imageB, $field));
         });
 
@@ -203,7 +202,7 @@ class GalleryViewHelper extends AbstractTagBasedViewHelper
 
     protected function setImageRepositoryDefaultOrderings()
     {
-        if($this->galleryNode->getProperty('sortingField') !== 'unsorted') {
+        if ($this->galleryNode->getProperty('sortingField') === 'unsorted') {
             return;
         }
 
