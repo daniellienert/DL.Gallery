@@ -10,8 +10,8 @@
         "neos/nodetypes": "*"
     },
     "autoload": {
-        "psr-0": {
-            "DL\\Gallery": "Classes"
+        "psr-4": {
+            "DL\\Gallery\\": "Classes"
         }
     },
     "extra": {
