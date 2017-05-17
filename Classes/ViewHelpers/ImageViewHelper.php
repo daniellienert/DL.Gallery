@@ -78,6 +78,8 @@ class ImageViewHelper extends \Neos\Media\ViewHelpers\ImageViewHelper
             'alt' => $image->getCaption() ? $image->getCaption() : $image->getTitle()
         ]);
 
+        $this->arguments['alt'] = $this->tag->getAttribute('alt'); // so that parent::render doesn't override the alt
+
         return parent::render($image, $width, $maximumWidth, $height, $maximumHeight, $allowCropping, $allowUpScaling, $async, $preset);
     }
 
