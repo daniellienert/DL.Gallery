@@ -1,14 +1,15 @@
-
 // in place gallery
 (function($) {
   $(function() {
 
+    var itemClass = '.dl-inPlaceGallery__item';
+
     var setPicActive = function(indicator, indicators, main) {
 
-      var $href    = indicator.attr('href');
-      var $size    = indicator.data('size').split('x');
-      var $width   = $size[0];
-      var $height  = $size[1];
+      var $href = indicator.attr('href');
+      var $size = indicator.data('size').split('x');
+      var $width = $size[0];
+      var $height = $size[1];
 
       main.attr('src', $href);
       main.attr('width', $width);
@@ -27,7 +28,7 @@
 
 
     var moveActive = function(move, gallery, indicators, main) {
-      var showIndex = indicators.index(gallery.find('.dl-inPlaceGallery__item a.active'));
+      var showIndex = indicators.index(gallery.find('a.active'));
       if (showIndex === -1) {
         showIndex = 0;
       }
@@ -36,16 +37,13 @@
     }
 
 
-    $('.dl-gallery').each( function() {
+    $('.dl-gallery-gallery').each(function() {
       var $gallery = $(this);
-      var $allGalleryIndicators = $gallery.find('.dl-inPlaceGallery__item a');
+      var $allGalleryIndicators = $gallery.find('a');
       var $mainImg = $($gallery.find('.dl-gallery__prefix__img img')[0]);
-
 
       var $pre = $($gallery.find('.dl-gallery__prefix__pre')[0]);
       var $next = $($gallery.find('.dl-gallery__prefix__next')[0]);
-
-
 
       $($pre).on('click', function(event) {
         moveActive(-1, $gallery, $allGalleryIndicators, $mainImg);

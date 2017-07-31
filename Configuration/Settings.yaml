@@ -70,9 +70,9 @@ DL:
               allowCropping: true
               allowUpScaling:
             large:
-              maximumWidth: 800
+              maximumWidth: 1200
               maximumHeight: 800
+              allowCropping: true
               width:
               height:
-              allowCropping:
               allowUpScaling:

@@ -18,4 +18,11 @@ module.exports = {
         ],
         dest: '../Public/JavaScript/JustifiedGallery.min.js'
     }
+
+    inPlaceGallery: {
+        src: [
+            'JavaScript/InPlaceGallery.js',
+        ],
+        dest: '../Public/JavaScript/InPlaceGallery.min.js'
+    }
 }
