@@ -4,7 +4,7 @@
 <div {attributes -> f:format.raw()}>
 
     <f:if condition="{requestFormat} == 'html'">
-        <f:render partial="{node.properties.theme}Prefix" arguments="{_all}"/>
+        <f:render partial="InPlaceGalleryPrefix" arguments="{_all}"/>
     </f:if>
 
     <div class="dl-gallery__main">
@@ -32,7 +32,7 @@
     </div>
 
     <f:if condition="{requestFormat} == 'html'">
-      <f:render partial="{node.properties.theme}Postfix" />
+      <f:render partial="InPlaceGalleryPostfix" />
     </f:if>
 
 </div>
