@@ -1,0 +1,36 @@
+prototype(Neos.Neos:Page) {
+    @context.galleryInstanceIsPresent = ${q(node).children('[instanceof Neos.Neos:ContentCollection]').find('[instanceof DL.Gallery:Gallery]').count() > 0}
+
+    @context.theme =  ${q(node).children('[instanceof Neos.Neos:ContentCollection]').find('[instanceof DL.Gallery:Gallery]').first().property('theme')}
+    @context.theme.@if.galleryInstanceIsPresent = ${galleryInstanceIsPresent}
+
+    head.stylesheets.gallery = Neos.Fusion:Tag {
+        tagName = 'link'
+
+        attributes {
+            rel = 'stylesheet'
+            href = Neos.Fusion:ResourceUri {
+                path = ${Configuration.setting('DL.Gallery.themes.' + theme + '.themeSettings.galleryCSS')}
+            }
+        }
+
+        @if.jsLoadingActivates = ${Configuration.setting('DL.Gallery.loadGalleryCSS')}
+        @if.galleryInstanceIsPresent = ${galleryInstanceIsPresent}
+        @position = 'after site'
+    }
+
+    body.javascripts.gallery = Neos.Fusion:Tag {
+        tagName = 'script'
+
+        attributes {
+            src = Neos.Fusion:ResourceUri {
+                path = ${Configuration.setting('DL.Gallery.themes.' + theme + '.themeSettings.galleryJS')}
+            }
+        }
+
+        @if.isFrontend = ${node.context.workspaceName == 'live'}
+        @if.jsLoadingActivated = ${Configuration.setting('DL.Gallery.loadGalleryJS')}
+        @if.galleryInstanceIsPresent = ${galleryInstanceIsPresent}
+        @position = 'after site'
+    }
+}

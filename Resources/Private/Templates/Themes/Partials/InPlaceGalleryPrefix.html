@@ -1,0 +1,18 @@
+{namespace media=TYPO3\Media\ViewHelpers}
+<div class="dl-gallery__prefix">
+  <f:if condition="{imagesSelectedFirst}">
+    <div class="dl-gallery__prefix__pre">
+    </div>
+    <div class="dl-gallery__prefix__next">
+    </div>
+    <div class="dl-gallery__prefix__img">
+      <f:if condition="{imagesSelectedFirst}">
+        <media:image
+          asset="{imagesSelectedFirst}"
+          alt="mainpicture"
+          maximumWidth="800"
+        />
+      </f:if>
+    </div>
+  </f:if>
+</div>
