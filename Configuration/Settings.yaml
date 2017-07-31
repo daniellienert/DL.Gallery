@@ -58,9 +58,9 @@ DL:
       inPlaceGallery:
         label: 'Gallery in Place'
         themeSettings:
-          itemClass: 'dl-inPlaceGallery__item'
-          rowClass: 'dl-inPlaceGallery__row'
-          columnClass: 'dl-inPlaceGallery__column'
+          galleryCSS: 'resource://DL.Gallery/Public/Styles/InPlaceGallery.css'
+          galleryJS: 'resource://DL.Gallery/Public/JavaScript/InPlaceGallery.min.js'
+          columnClass: dl-inPlaceGallery__column
           imageVariants:
             thumb:
               maximumWidth:
