@@ -14,10 +14,10 @@
                   <div class="row dl-gallery">
                       <g:gallery galleryNode="{node}">
                           <figure itemprop="associatedMedia" itemtype="http://schema.org/ImageObject" class="{themeSettings.columnClass} neos-nodetypes-image">
-                              <a href="{g:imageData(image:image, theme:'bootstrapLightbox', imageVariant:'large', key:'src')}" itemprop="contentUrl" data-size="{g:imageData(image:image, theme:'bootstrapLightbox', imageVariant:'large', key:'width')}x{g:imageData(image:image, theme:'bootstrapLightbox', imageVariant:'large', key:'height')}">
-                                  <g:image image="{image}" theme="bootstrapLightbox" imageVariant="thumb" additionalAttributes="{itemprop: 'thumbnail'}"/>
+                              <a href="{g:imageData(image:image, theme:'inPlaceGallery', imageVariant:'large', key:'src')}" itemprop="contentUrl" data-size="{g:imageData(image:image, theme:'inPlaceGallery', imageVariant:'large', key:'width')}x{g:imageData(image:image, theme:'inPlaceGallery', imageVariant:'large', key:'height')}">
+                                  <g:image image="{image}" theme="inPlaceGallery" imageVariant="thumb" additionalAttributes="{itemprop: 'thumbnail'}"/>
                               </a>
-                              <figcaption itemprop="caption description">{g:imageData(image:image, theme:'bootstrapLightbox', imageVariant:'large', key:'caption')}</figcaption>
+                              <figcaption itemprop="caption description">{g:imageData(image:image, theme:'inPlaceGallery', imageVariant:'large', key:'caption')}</figcaption>
                           </figure>
                       </g:gallery>
                   </div>
