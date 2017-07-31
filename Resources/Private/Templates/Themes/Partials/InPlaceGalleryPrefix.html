@@ -1,3 +1,4 @@
+{namespace g = DL\Gallery\ViewHelpers}
 {namespace media=Neos\Media\ViewHelpers}
 
 <div class="dl-gallery__prefix">
@@ -8,7 +9,7 @@
     </div>
     <div class="dl-gallery__prefix__img">
       <f:if condition="{imagesSelectedFirst}">
-        <media:image
+        <g:image
           image="{imagesSelectedFirst}"
           alt="mainpicture"
           theme="inPlaceGallery"
