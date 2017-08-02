@@ -2,8 +2,6 @@
 (function($) {
   $(function() {
 
-    var itemClass = '.dl-inPlaceGallery__item';
-
     var setPicActive = function(indicator, indicators, main) {
 
       var $href = indicator.attr('href');
