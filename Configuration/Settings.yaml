@@ -55,4 +55,24 @@ DL:
             large:
               maximumWidth: 2000
               maximumHeight: 1200
-
+      inPlaceGallery:
+        label: 'Gallery in Place'
+        themeSettings:
+          galleryCSS: 'resource://DL.Gallery/Public/Styles/InPlaceGallery.css'
+          galleryJS: 'resource://DL.Gallery/Public/JavaScript/InPlaceGallery.min.js'
+          columnClass: dl-inPlaceGallery__column
+          imageVariants:
+            thumb:
+              maximumWidth:
+              maximumHeight:
+              width: 50
+              height: 50
+              allowCropping: true
+              allowUpScaling:
+            large:
+              maximumWidth: 1200
+              maximumHeight: 800
+              allowCropping: true
+              width:
+              height:
+              allowUpScaling:

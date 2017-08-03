@@ -1,5 +1,6 @@
 {namespace g = DL\Gallery\ViewHelpers}
 {namespace media=Neos\Media\ViewHelpers}
+
 <div {attributes -> f:format.raw()}>
     <f:if condition="{imagesSelected}">
         <g:gallery galleryNode="{node}">

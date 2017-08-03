@@ -8,4 +8,5 @@ prototype(DL.Gallery:Gallery) < prototype(Neos.Neos:Content) {
 
     requestFormat = ${request.format}
     imagesSelected = ${q(node).property('tag') || q(node).property('assetCollection') || Type.isArray(q(node).property('assets'))}
+    imagesSelectedFirst = ${Array.first(q(node).property('assets'))}
 }

@@ -1,23 +1,21 @@
 {namespace g = DL\Gallery\ViewHelpers}
 {namespace media=Neos\Media\ViewHelpers}
 
-
 <div {attributes -> f:format.raw()}>
     <f:if condition="{imagesSelected}">
         <f:then>
-
-    <div class="dl-gallery" itemscope itemtype="http://schema.org/ImageGallery">
-        <div class="row dl-gallery">
-            <g:gallery galleryNode="{node}">
-                <figure itemprop="associatedMedia" itemtype="http://schema.org/ImageObject" class="{themeSettings.columnClass} neos-nodetypes-image">
-                    <a href="{g:imageData(image:image, theme:'bootstrapLightbox', imageVariant:'large', key:'src')}" itemprop="contentUrl" data-size="{g:imageData(image:image, theme:'bootstrapLightbox', imageVariant:'large', key:'width')}x{g:imageData(image:image, theme:'bootstrapLightbox', imageVariant:'large', key:'height')}">
-                        <g:image image="{image}" theme="bootstrapLightbox" imageVariant="thumb" additionalAttributes="{itemprop: 'thumbnail'}"/>
-                    </a>
-                    <figcaption itemprop="caption description">{g:imageData(image:image, theme:'bootstrapLightbox', imageVariant:'large', key:'caption')}</figcaption>
-                </figure>
-            </g:gallery>
-        </div>
-    </div>
+            <div class="dl-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+                <div class="row dl-gallery">
+                    <g:gallery galleryNode="{node}">
+                        <figure itemprop="associatedMedia" itemtype="http://schema.org/ImageObject" class="{themeSettings.columnClass} neos-nodetypes-image">
+                            <a href="{g:imageData(image:image, theme:'bootstrapLightbox', imageVariant:'large', key:'src')}" itemprop="contentUrl" data-size="{g:imageData(image:image, theme:'bootstrapLightbox', imageVariant:'large', key:'width')}x{g:imageData(image:image, theme:'bootstrapLightbox', imageVariant:'large', key:'height')}">
+                                <g:image image="{image}" theme="bootstrapLightbox" imageVariant="thumb" additionalAttributes="{itemprop: 'thumbnail'}"/>
+                            </a>
+                            <figcaption itemprop="caption description">{g:imageData(image:image, theme:'bootstrapLightbox', imageVariant:'large', key:'caption')}</figcaption>
+                        </figure>
+                    </g:gallery>
+                </div>
+            </div>
         </f:then>
         <f:else>
             <f:if condition="{node.context.workspace.name} != 'live'">

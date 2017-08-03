@@ -1,0 +1,21 @@
+{namespace g = DL\Gallery\ViewHelpers}
+{namespace media=Neos\Media\ViewHelpers}
+
+<div class="dl-gallery__prefix">
+  <f:if condition="{imagesSelected}">
+    <div class="dl-gallery__prefix__pre">
+    </div>
+    <div class="dl-gallery__prefix__next">
+    </div>
+    <div class="dl-gallery__prefix__img">
+      <f:if condition="{imagesSelectedFirst}">
+        <g:image
+          image="{imagesSelectedFirst}"
+          alt="mainpicture"
+          theme="inPlaceGallery"
+          imageVariant="large"
+        />
+      </f:if>
+    </div>
+  </f:if>
+</div>

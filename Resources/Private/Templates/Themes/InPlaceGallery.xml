@@ -4,7 +4,7 @@
 <div {attributes -> f:format.raw()}>
     <f:if condition="{imagesSelected}">
         <g:gallery galleryNode="{node}">
-            <g:image image="{image}" theme="bootstrapLightbox" imageVariant="thumb"/>
+            <g:image image="{image}" theme="inPlaceGallery" imageVariant="thumb"/>
         </g:gallery>
     </f:if>
 </div>

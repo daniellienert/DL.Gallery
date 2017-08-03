@@ -1,0 +1,40 @@
+{namespace g = DL\Gallery\ViewHelpers}
+{namespace media=Neos\Media\ViewHelpers}
+
+<div {attributes -> f:format.raw()}>
+
+    <f:if condition="{requestFormat} == 'html'">
+        <f:render partial="InPlaceGalleryPrefix" arguments="{_all}"/>
+    </f:if>
+
+    <div class="dl-gallery__main">
+      <f:if condition="{imagesSelected}">
+          <f:then>
+              <div class="dl-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+                  <div class="row dl-gallery">
+                      <g:gallery galleryNode="{node}">
+                          <div class="item dl-gallery">
+                              <figure itemprop="associatedMedia" itemtype="http://schema.org/ImageObject" class="{themeSettings.columnClass} neos-nodetypes-image">
+                                  <a href="{g:imageData(image:image, theme:'inPlaceGallery', imageVariant:'large', key:'src')}" itemprop="contentUrl" data-size="{g:imageData(image:image, theme:'inPlaceGallery', imageVariant:'large', key:'width')}x{g:imageData(image:image, theme:'inPlaceGallery', imageVariant:'large', key:'height')}">
+                                      <g:image image="{image}" theme="inPlaceGallery" imageVariant="thumb" additionalAttributes="{itemprop: 'thumbnail'}"/>
+                                  </a>
+                                  <figcaption itemprop="caption description">{g:imageData(image:image, theme:'inPlaceGallery', imageVariant:'large', key:'caption')}</figcaption>
+                              </figure>
+                          </div>
+                      </g:gallery>
+                  </div>
+              </div>
+          </f:then>
+          <f:else>
+              <f:if condition="{node.context.workspace.name} != 'live'">
+                  <div>Please select select some images or a tag in the inspector to display a gallery.</div>
+              </f:if>
+          </f:else>
+      </f:if>
+    </div>
+
+    <f:if condition="{requestFormat} == 'html'">
+      <f:render partial="InPlaceGalleryPostfix" />
+    </f:if>
+
+</div>
