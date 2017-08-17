@@ -1,0 +1,7 @@
+prototype(DL.Gallery:Components.BackendError) < prototype(Neos.Fusion:Tag) {
+    attributes {
+        style = 'background-color: #03A9F4; padding: 2rem; color: white'
+    }
+
+    content = ${Translation.translate('gallery.noImagesSelected', null, [], 'Main', 'DL.Gallery')}
+}

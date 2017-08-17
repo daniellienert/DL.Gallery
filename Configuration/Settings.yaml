@@ -24,6 +24,7 @@ DL:
     themes:
       bootstrapLightbox:
         label: 'Bootstrap with Lightbox'
+        fusionPrototype: 'DL.Gallery:Themes.BootstrapLightbox'
         themeSettings:
           galleryCSS: 'resource://DL.Gallery/Public/Styles/BootstrapLightbox.css'
           galleryJS: 'resource://DL.Gallery/Public/JavaScript/BootstrapLightbox.min.js'
@@ -45,6 +46,7 @@ DL:
               allowUpScaling: null
       justified:
         label: 'Justified Gallery'
+        fusionPrototype: 'DL.Gallery:Themes.Justified'
         themeSettings:
           galleryCSS: 'resource://DL.Gallery/Public/Styles/JustifiedGallery.css'
           galleryJS: 'resource://DL.Gallery/Public/JavaScript/JustifiedGallery.min.js'

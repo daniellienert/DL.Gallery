@@ -1,0 +1,9 @@
+prototype(DL.Gallery:Themes.Justified) < prototype(DL.Gallery:Themes.AbstractTheme) {
+    templatePath = ${'resource://DL.Gallery/Private/Fusion/Themes/Justified/Justified.' + request.format}
+
+    attributes.class {
+        lightbox = 'lightbox-images'
+    }
+
+    photoSwipe = DL.Gallery:Components.PhotoSwipe
+}

@@ -1,2 +1,6 @@
-include: NodeTypes/*
-include: Themes/*
+include: **/*
+
+prototype(Neos.Neos:ContentCase).DLGallery {
+    condition = ${q(node).is('[instanceof DL.Gallery:Gallery]')}
+    type = ${Configuration.setting('DL.Gallery.themes.' + node.properties.theme + '.fusionPrototype')}
+}
