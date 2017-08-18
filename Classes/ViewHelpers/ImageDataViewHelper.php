@@ -1,4 +1,5 @@
 <?php
+
 namespace DL\Gallery\ViewHelpers;
 
 /*
@@ -11,6 +12,7 @@ namespace DL\Gallery\ViewHelpers;
  * source code.
  */
 
+use DL\Gallery\Exceptions\InvalidConfigurationException;
 use Neos\Flow\Annotations as Flow;
 use Neos\FluidAdaptor\Core\ViewHelper\AbstractViewHelper;
 use Neos\Media\Domain\Model\ImageInterface;
@@ -73,11 +75,16 @@ class ImageDataViewHelper extends AbstractViewHelper
      * @param bool $allowCropping
      * @param bool $allowUpScaling
      * @return array|null
+     * @throws InvalidConfigurationException
      */
     public function render(ImageInterface $image, $width = null, $maximumWidth = null, $height = null, $maximumHeight = null, $allowCropping = false, $allowUpScaling = false)
     {
         if ($this->hasArgument('theme') && $this->hasArgument('imageVariant')) {
             $themeSettings = $this->getSettingsForCurrentTheme($this->arguments['theme']);
+
+            if (!isset($themeSettings['imageVariants'][$this->arguments['imageVariant']])) {
+                throw new InvalidConfigurationException(sprintf('The theme "%s" has no imageVariant with name "%s" defined.', $this->arguments['theme'], $this->arguments['imageVariant']), 1503035707);
+            }
 
             $imageVariantSettings = $themeSettings['imageVariants'][$this->arguments['imageVariant']];
 
@@ -97,7 +104,7 @@ class ImageDataViewHelper extends AbstractViewHelper
         $imageData['title'] = $image->getTitle();
         $imageData['caption'] = $image->getCaption();
 
-        if(!$this->hasArgument('key')) {
+        if (!$this->hasArgument('key')) {
             return $imageData;
         }
 
@@ -108,11 +115,20 @@ class ImageDataViewHelper extends AbstractViewHelper
 
 
     /**
-     * @param $theme
+     * @param string $theme
      * @return mixed
+     * @throws InvalidConfigurationException
      */
     protected function getSettingsForCurrentTheme($theme)
     {
+        if (!isset($this->settings['themes'][$theme])) {
+            throw new InvalidConfigurationException(sprintf('No theme with name %s was found in settings.', $theme), 1503035486);
+        }
+
+        if (!isset($this->settings['themes'][$theme]['themeSettings'])) {
+            throw new InvalidConfigurationException(sprintf('The theme %s has no themeSettings defined ', $theme), 1503035487);
+        }
+
         return $this->settings['themes'][$theme]['themeSettings'];
     }
 }
