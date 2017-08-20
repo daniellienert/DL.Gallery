@@ -72,6 +72,7 @@
   height: 100%;
   background: #000;
   opacity: 0;
+  transform: translateZ(0);
   -webkit-backface-visibility: hidden;
   will-change: opacity;
 }
@@ -709,6 +710,11 @@ a.pswp__share--download:hover {
   background: none;
 }
 
+.dl-gallery img {
+  width: 100%;
+  height: auto;
+  margin-right: auto;
+}
 .dl-gallery figcaption {
   display: none;
 }

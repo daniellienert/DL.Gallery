@@ -4,6 +4,12 @@ $pswp__assets-path: '/_Resources/Static/Packages/DL.Gallery/Galleries/PhotoSwipe
 @import "../node_modules/photoswipe/src/css/default-skin/default-skin.scss";
 
 .dl-gallery {
+  img {
+    width: 100%;
+    height: auto;
+    margin-right: auto;
+  }
+
   figcaption {
     display: none;
   }
