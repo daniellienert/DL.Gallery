@@ -1,20 +1,24 @@
 prototype(Neos.Neos:Page) {
+    @context.instances = ${q(node).children('[instanceof Neos.Neos:ContentCollection]').find('[instanceof DL.Gallery:Gallery]').count()}
     @context.galleryInstanceIsPresent = ${q(node).children('[instanceof Neos.Neos:ContentCollection]').find('[instanceof DL.Gallery:Gallery]').count() > 0}
 
     @context.theme =  ${q(node).children('[instanceof Neos.Neos:ContentCollection]').find('[instanceof DL.Gallery:Gallery]').first().property('theme')}
-    @context.theme.@if.galleryInstanceIsPresent = ${galleryInstanceIsPresent}
+    @context.theme.@if.galleryInstanceIsPresent = ${q(node).children('[instanceof Neos.Neos:ContentCollection]').find('[instanceof DL.Gallery:Gallery]').count() > 0}
 
     head.stylesheets.gallery = Neos.Fusion:Tag {
         tagName = 'link'
 
         attributes {
             rel = 'stylesheet'
+            type = 'text/css'
+            instances = ${instances}
+            present = ${galleryInstanceIsPresent == true ? 'true' : 'false'}
             href = Neos.Fusion:ResourceUri {
                 path = ${Configuration.setting('DL.Gallery.themes.' + theme + '.themeSettings.galleryCSS')}
             }
         }
 
-        @if.jsLoadingActivates = ${Configuration.setting('DL.Gallery.loadGalleryCSS')}
+        @if.cssLoadingActivates = ${Configuration.setting('DL.Gallery.loadGalleryCSS')}
         @if.galleryInstanceIsPresent = ${galleryInstanceIsPresent}
         @position = 'after site'
     }
