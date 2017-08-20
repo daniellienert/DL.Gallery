@@ -13,6 +13,7 @@ prototype(DL.Gallery:Themes.AbstractTheme) < prototype(Neos.Neos:Content) {
         }
     }
 
+    @context.themeSettings = ${Configuration.setting('DL.Gallery.themes.' + node.properties.theme + '.themeSettings')}
     @context.imagesSelected = ${q(node).property('tag') != null || q(node).property('assetCollection') != null || (Type.isArray(q(node).property('assets')) && Array.length(q(node).property('assets')) > 0)}
     imagesSelected = ${imagesSelected}
 
