@@ -28,7 +28,7 @@
         label: i18n
         inspector:
           group: sourceByTags
-          editor: Content/Inspector/Editors/SelectBoxEditor
+          editor: Neos.Neos/Inspector/Editors/SelectBoxEditor
           editorOptions:
             dataSourceIdentifier: dl-gallery-assetcollections
         reloadIfChanged: true
@@ -38,7 +38,7 @@
         label: i18n
         inspector:
           group: sourceByTags
-          editor: Content/Inspector/Editors/SelectBoxEditor
+          editor: Neos.Neos/Inspector/Editors/SelectBoxEditor
           editorOptions:
             dataSourceIdentifier: dl-gallery-tags
         reloadIfChanged: true
@@ -83,7 +83,7 @@
         label: i18n
         inspector:
           group: presentation
-          editor: Content/Inspector/Editors/SelectBoxEditor
+          editor: Neos.Neos/Inspector/Editors/SelectBoxEditor
           editorOptions:
             dataSourceIdentifier: dl-gallery-themes
         reloadIfChanged: true
