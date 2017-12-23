@@ -2,7 +2,7 @@ prototype(Neos.Neos:Page) {
     @context.instances = ${q(node).children('[instanceof Neos.Neos:ContentCollection]').find('[instanceof DL.Gallery:Gallery]').count()}
     @context.galleryInstanceIsPresent = ${q(node).children('[instanceof Neos.Neos:ContentCollection]').find('[instanceof DL.Gallery:Gallery]').count() > 0}
 
-    @context.theme =  ${q(node).children('[instanceof Neos.Neos:ContentCollection]').find('[instanceof DL.Gallery:Gallery]').first().property('theme')}
+    @context.theme = ${q(node).children('[instanceof Neos.Neos:ContentCollection]').find('[instanceof DL.Gallery:Gallery]').first().property('theme')}
     @context.theme.@if.galleryInstanceIsPresent = ${q(node).children('[instanceof Neos.Neos:ContentCollection]').find('[instanceof DL.Gallery:Gallery]').count() > 0}
 
     head.stylesheets.gallery = Neos.Fusion:Tag {

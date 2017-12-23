@@ -4,6 +4,13 @@ prototype(DL.Gallery:Themes.Justified) < prototype(DL.Gallery:Themes.AbstractThe
     attributes.class {
         lightbox = 'lightbox-images'
     }
+}
 
-    photoSwipe = DL.Gallery:Components.PhotoSwipe
+prototype(Neos.Neos:Page) {
+    body {
+        @context.photoSwipe = DL.Gallery:Components.PhotoSwipe
+        @process.addPhotoSwipe = ${value + photoSwipe}
+        @process.addPhotoSwipe.@if.justifiedThemeLoaded = ${theme == 'justified'}
+        @process.addPhotoSwipe.@position = 'before appendJavaScripts'
+    }
 }
