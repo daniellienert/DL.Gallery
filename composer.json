@@ -6,7 +6,7 @@
         "MIT"
     ],
     "require": {
-        "neos/neos": "<3.3.0",
+        "neos/neos": ">=3.3.0",
         "neos/nodetypes": "*"
     },
     "autoload": {
