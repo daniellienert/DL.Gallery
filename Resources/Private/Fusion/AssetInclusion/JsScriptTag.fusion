@@ -1,0 +1,20 @@
+prototype(DL.Gallery:JsScriptTag) < prototype(Neos.Fusion:Tag) {
+    path = null
+    theme = null
+
+    @context.path = ${this.path}
+
+    tagName = 'script'
+    themesInCurrentDocument = DL.Gallery:ThemesInCurrentDocument
+
+    attributes {
+        src = Neos.Fusion:ResourceUri {
+            path = ${path}
+        }
+    }
+
+    @if.isFrontend = ${node.context.workspaceName == 'live'}
+    @if.jsLoadingActivated = ${Configuration.setting('DL.Gallery.loadGalleryJS')}
+    @if.specifiedThemeIsInCurrentDocuemnt = ${Array.indexOf(this.themesInCurrentDocument, this.theme) != -1}
+    @position = 'after site'
+}

@@ -1,0 +1,5 @@
+prototype(DL.Gallery:ThemesInCurrentDocument) < prototype(Neos.Fusion:RawCollection) {
+    collection = ${q(documentNode).children('[instanceof Neos.Neos:ContentCollection]').find('[instanceof DL.Gallery:Gallery]').get()}
+    itemName = 'gallery'
+    itemRenderer = ${gallery.properties.theme}
+}

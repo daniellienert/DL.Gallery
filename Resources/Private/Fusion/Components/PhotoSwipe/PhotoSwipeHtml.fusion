@@ -1,4 +1,5 @@
-prototype(DL.Gallery:Components.PhotoSwipe) < prototype(Neos.Fusion:Template) {
+prototype(DL.Gallery:Components.PhotoSwipeHtml) < prototype(Neos.Fusion:Template) {
     templatePath = ${'resource://DL.Gallery/Private/Fusion/Components/PhotoSwipe/PhotoSwipe.html'}
     @if.formatIsHtml = ${request.format == 'html'}
 }
+

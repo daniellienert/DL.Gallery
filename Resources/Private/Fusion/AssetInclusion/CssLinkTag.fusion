@@ -1,0 +1,21 @@
+prototype(DL.Gallery:CSSLinkTag) < prototype(Neos.Fusion:Tag) {
+    path = null
+    theme = null
+
+    @context.path = ${this.path}
+
+    tagName = 'link'
+    themesInCurrentDocument = DL.Gallery:ThemesInCurrentDocument
+
+    attributes {
+        rel = 'stylesheet'
+        type = 'text/css'
+        href = Neos.Fusion:ResourceUri {
+            path = ${path}
+        }
+    }
+
+    @if.cssLoadingActivated = ${Configuration.setting('DL.Gallery.loadGalleryCSS')}
+    @if.specifiedThemeIsInCurrentDocuemnt = ${Array.indexOf(this.themesInCurrentDocument, this.theme) != -1}
+    @position = 'after site'
+}

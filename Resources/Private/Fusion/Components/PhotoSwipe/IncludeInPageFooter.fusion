@@ -1,0 +1,19 @@
+prototype(Neos.Neos:Page) {
+    body {
+        @context.photoSwipeHtml = DL.Gallery:Components.PhotoSwipeHtml
+        @process.addPhotoSwipe = ${value + photoSwipeHtml}
+        @process.addPhotoSwipe {
+            @if.photoSwipeShouldBeIncluded = DL.Gallery:ShouldPhotoswipeBeIncluded
+            @position = 'before appendJavaScripts'
+        }
+    }
+}
+
+prototype(DL.Gallery:ShouldPhotoswipeBeIncluded) < prototype(Neos.Fusion:Value) {
+    themesUsingPhotoswipe = Neos.Fusion:RawCollection {
+        collection = ${q(documentNode).children('[instanceof Neos.Neos:ContentCollection]').find('[instanceof DL.Gallery:Gallery]').get()}
+        itemName = 'gallery'
+        itemRenderer = ${Configuration.setting('DL.Gallery.themes.' + gallery.properties.theme + '.themeSettings.usePhotoSwipe')}
+    }
+    value = ${Array.indexOf(this.themesUsingPhotoswipe, true) > -1}
+}

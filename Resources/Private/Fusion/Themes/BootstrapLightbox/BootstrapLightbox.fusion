@@ -13,10 +13,13 @@ prototype(DL.Gallery:Themes.BootstrapLightbox) < prototype(DL.Gallery:Themes.Abs
 }
 
 prototype(Neos.Neos:Page) {
-    body {
-        @context.photoSwipe = DL.Gallery:Components.PhotoSwipe
-        @process.addPhotoSwipe = ${value + photoSwipe}
-        @process.addPhotoSwipe.@if.bootstrapLightboxThemeLoaded = ${theme == 'bootstrapLightbox'}
-        @process.addPhotoSwipe.@position = 'before appendJavaScripts'
+    head.stylesheets.bootstrapGallery = DL.Gallery:CSSLinkTag {
+        theme = 'bootstrapLightbox'
+        path = 'resource://DL.Gallery/Public/Styles/BootstrapLightbox.css'
+    }
+
+    body.javascripts.bootstrapGallery = DL.Gallery:JsScriptTag {
+        theme = 'bootstrapLightbox'
+        path = 'resource://DL.Gallery/Public/JavaScript/BootstrapLightbox.min.js'
     }
 }

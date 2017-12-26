@@ -7,10 +7,13 @@ prototype(DL.Gallery:Themes.Justified) < prototype(DL.Gallery:Themes.AbstractThe
 }
 
 prototype(Neos.Neos:Page) {
-    body {
-        @context.photoSwipe = DL.Gallery:Components.PhotoSwipe
-        @process.addPhotoSwipe = ${value + photoSwipe}
-        @process.addPhotoSwipe.@if.justifiedThemeLoaded = ${theme == 'justified'}
-        @process.addPhotoSwipe.@position = 'before appendJavaScripts'
+    head.stylesheets.justifiedGallery = DL.Gallery:CSSLinkTag {
+        theme = 'justified'
+        path = 'resource://DL.Gallery/Public/Styles/JustifiedGallery.css'
+    }
+
+    body.javascripts.justifiedGallery = DL.Gallery:JsScriptTag {
+        theme = 'justified'
+        path = 'resource://DL.Gallery/Public/JavaScript/JustifiedGallery.min.js'
     }
 }
