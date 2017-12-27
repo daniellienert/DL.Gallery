@@ -17,5 +17,4 @@ prototype(DL.Gallery:CSSLinkTag) < prototype(Neos.Fusion:Tag) {
 
     @if.cssLoadingActivated = ${Configuration.setting('DL.Gallery.loadGalleryCSS')}
     @if.specifiedThemeIsInCurrentDocuemnt = ${Array.indexOf(this.themesInCurrentDocument, this.theme) != -1}
-    @position = 'after site'
 }

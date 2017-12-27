@@ -16,5 +16,4 @@ prototype(DL.Gallery:JsScriptTag) < prototype(Neos.Fusion:Tag) {
     @if.isFrontend = ${node.context.workspaceName == 'live'}
     @if.jsLoadingActivated = ${Configuration.setting('DL.Gallery.loadGalleryJS')}
     @if.specifiedThemeIsInCurrentDocuemnt = ${Array.indexOf(this.themesInCurrentDocument, this.theme) != -1}
-    @position = 'after site'
 }

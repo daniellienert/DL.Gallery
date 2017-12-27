@@ -10,10 +10,15 @@ prototype(Neos.Neos:Page) {
     head.stylesheets.justifiedGallery = DL.Gallery:CSSLinkTag {
         theme = 'justified'
         path = 'resource://DL.Gallery/Public/Styles/JustifiedGallery.css'
+
     }
 
-    body.javascripts.justifiedGallery = DL.Gallery:JsScriptTag {
-        theme = 'justified'
-        path = 'resource://DL.Gallery/Public/JavaScript/JustifiedGallery.min.js'
+    body {
+        justifiedGalleryJs = DL.Gallery:JsScriptTag {
+            theme = 'justified'
+            path = 'resource://DL.Gallery/Public/JavaScript/JustifiedGallery.min.js'
+        }
+        @process.appendJustifiedGalleryJs = ${value + this.justifiedGalleryJs}
+        @process.appendJustifiedGalleryJs.@position = 'end'
     }
 }
