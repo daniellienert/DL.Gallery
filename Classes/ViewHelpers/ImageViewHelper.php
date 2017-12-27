@@ -42,19 +42,19 @@ class ImageViewHelper extends \Neos\Media\ViewHelpers\ImageViewHelper
     }
 
     /**
-     * @param ImageInterface|null $image
-     * @param null $width
-     * @param null $maximumWidth
-     * @param null $height
-     * @param null $maximumHeight
-     * @param bool $allowCropping
-     * @param bool $allowUpScaling
-     * @param bool $async
-     * @param string $preset
-     * @param null $quality
-     * @return string
+     * @param ImageInterface $image The image to be rendered as an image
+     * @param integer $width Desired width of the image
+     * @param integer $maximumWidth Desired maximum width of the image
+     * @param integer $height Desired height of the image
+     * @param integer $maximumHeight Desired maximum height of the image
+     * @param boolean $allowCropping Whether the image should be cropped if the given sizes would hurt the aspect ratio
+     * @param boolean $allowUpScaling Whether the resulting image size might exceed the size of the original image
+     * @param boolean $async Return asynchronous image URI in case the requested image does not exist already
+     * @param string $preset Preset used to determine image configuration
+     * @param integer $quality Quality of the image
+     * @return string an <img...> html tag
      */
-    public function render(ImageInterface $image = null, $width = null, $maximumWidth = null, $height = null, $maximumHeight = null, $allowCropping = false, $allowUpScaling = false, $async = false, $preset = '', $quality = null)
+    public function render(ImageInterface $image = null, $width = null, $maximumWidth = null, $height = null, $maximumHeight = null, $allowCropping = false, $allowUpScaling = false, $async = false, $preset = null, $quality = null)
     {
 
         if ($this->hasArgument('theme') && $this->hasArgument('imageVariant')) {

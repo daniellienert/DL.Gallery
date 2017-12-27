@@ -106,7 +106,7 @@ class GalleryViewHelper extends AbstractTagBasedViewHelper
     /**
      * @return array
      */
-    protected function getSelectedImages()
+    protected function getSelectedImages(): array
     {
         $images = $this->galleryNode->getProperty('assets');
 
@@ -125,7 +125,7 @@ class GalleryViewHelper extends AbstractTagBasedViewHelper
     /**
      * @return array
      */
-    protected function selectImagesByTag()
+    protected function selectImagesByTag(): array
     {
         $tagIdentifier = $this->galleryNode->getProperty('tag');
 
@@ -149,7 +149,7 @@ class GalleryViewHelper extends AbstractTagBasedViewHelper
     /**
      * @return array
      */
-    protected function selectImagesByAssetCollection()
+    protected function selectImagesByAssetCollection(): array
     {
         $assetCollection = $this->galleryNode->getProperty('assetCollection');
 
@@ -168,7 +168,7 @@ class GalleryViewHelper extends AbstractTagBasedViewHelper
      * @param Image $image
      * @return array
      */
-    protected function buildImageMetaDataArray(Image $image)
+    protected function buildImageMetaDataArray(Image $image): array
     {
         return [
             'title' => $image->getTitle(),
@@ -179,7 +179,7 @@ class GalleryViewHelper extends AbstractTagBasedViewHelper
     /**
      * @return array
      */
-    protected function getSettingsForCurrentTheme()
+    protected function getSettingsForCurrentTheme(): array
     {
         return $this->settings['themes'][$this->galleryNode->getProperty('theme')]['themeSettings'];
     }
@@ -189,7 +189,7 @@ class GalleryViewHelper extends AbstractTagBasedViewHelper
      * @param string $field
      * @param string $direction
      */
-    protected function sortImageObjects(array &$images, $field = 'resource.filename', $direction = 'ASC')
+    protected function sortImageObjects(array &$images, string $field = 'resource.filename', string $direction = 'ASC')
     {
         usort($images, function ($imageA, $imageB) use ($field) {
             return strcmp(ObjectAccess::getPropertyPath($imageA, $field), ObjectAccess::getPropertyPath($imageB, $field));

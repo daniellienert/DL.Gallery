@@ -77,8 +77,9 @@ class ImageDataViewHelper extends AbstractViewHelper
      * @return array|null
      * @throws InvalidConfigurationException
      */
-    public function render(ImageInterface $image, $width = null, $maximumWidth = null, $height = null, $maximumHeight = null, $allowCropping = false, $allowUpScaling = false)
+    public function render(ImageInterface $image, int $width = 0, int $maximumWidth = 0, int $height = 0, int $maximumHeight = 0, bool $allowCropping = false, bool $allowUpScaling = false)
     {
+
         if ($this->hasArgument('theme') && $this->hasArgument('imageVariant')) {
             $themeSettings = $this->getSettingsForCurrentTheme($this->arguments['theme']);
 
@@ -88,15 +89,14 @@ class ImageDataViewHelper extends AbstractViewHelper
 
             $imageVariantSettings = $themeSettings['imageVariants'][$this->arguments['imageVariant']];
 
-            $width = isset($imageVariantSettings['width']) ? $imageVariantSettings['width'] : 0;
-            $maximumWidth = isset($imageVariantSettings['maximumWidth']) ? $imageVariantSettings['maximumWidth'] : 0;
-            $height = isset($imageVariantSettings['height']) ? $imageVariantSettings['height'] : 0;
-            $maximumHeight = isset($imageVariantSettings['maximumHeight']) ? $imageVariantSettings['maximumHeight'] : 0;
+            $width = $imageVariantSettings['width'] ?? 0;
+            $maximumWidth = $imageVariantSettings['maximumWidth'] ?? 0;
+            $height = $imageVariantSettings['height'] ?? 0;
+            $maximumHeight =$imageVariantSettings['maximumHeight'] ?? 0;
 
-            $allowCropping = isset($imageVariantSettings['allowCropping']) ? $imageVariantSettings['allowCropping'] : false;
-            $allowUpScaling = isset($imageVariantSettings['allowUpScaling']) ? $imageVariantSettings['allowUpScaling'] : false;
+            $allowCropping = $imageVariantSettings['allowCropping'] ?? false;
+            $allowUpScaling = $imageVariantSettings['allowUpScaling'] ?? false;
         }
-
 
         $thumbnailConfiguration = new ThumbnailConfiguration($width, $maximumWidth, $height, $maximumHeight, $allowCropping, $allowUpScaling);
         $imageData = $this->assetService->getThumbnailUriAndSizeForAsset($image, $thumbnailConfiguration);
@@ -119,7 +119,7 @@ class ImageDataViewHelper extends AbstractViewHelper
      * @return mixed
      * @throws InvalidConfigurationException
      */
-    protected function getSettingsForCurrentTheme($theme)
+    protected function getSettingsForCurrentTheme(string $theme)
     {
         if (!isset($this->settings['themes'][$theme])) {
             throw new InvalidConfigurationException(sprintf('No theme with name %s was found in settings.', $theme), 1503035486);
