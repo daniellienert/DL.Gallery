@@ -36,12 +36,31 @@ The images to show in a gallery need to be grouped by a tag or collection. To gr
 Add a new gallery plugin to your page. You can now choose a tag or a collection as the gallery source in the inspector. The images will then be rendered equally within the gallery.
 
 
-
 ## Gallery Presentation
 
 ### Theme Bootstrap Lightbox
 
 The thumbnails of the gallery are displayed squared using a bootstrap grid. The lightbox [photoswipe](http://photoswipe.com/) is used to open a large representation of the image.
 
+![Bootstrap Squares](https://user-images.githubusercontent.com/642226/34392687-0d2e7ab8-eb4e-11e7-8b8c-caa6b5f0d5a6.png)
+
 ### Theme Justified
-Uses [justified.js](http://nitinhayaran.github.io/Justified.js/demo/) to display the thumbnails and also [photoswipe](http://photoswipe.com/) as lightbox.
+Uses the jquery plugin [justified.js](http://nitinhayaran.github.io/Justified.js/demo/) to display the thumbnails and also [photoswipe](http://photoswipe.com/) as lightbox.
+
+![Justified Theme](https://user-images.githubusercontent.com/642226/34392597-6a3c25f8-eb4d-11e7-8bfc-a4561be6a838.png)
+
+## Build your own theme
+The themes are written mostly using Neos Fusion code. That means you can adjust the existing two themes from within your own package easily or build your own theme.
+
+Building a new theme is as easy as adding a new fusion prototype to render the images and register your prototype in the settings:
+
+	DL:
+	  Gallery:
+	    themes:
+	      yourThemeName:
+	        label: 'Displays the images like I want'
+	        fusionPrototype: 'YourVendor.YourPackage:renderingPrototype'
+	        themeSettings:
+	            settingForMyTheme:SomeSetting
+
+Your theme is now selectable in the Nodes theme selector. 
