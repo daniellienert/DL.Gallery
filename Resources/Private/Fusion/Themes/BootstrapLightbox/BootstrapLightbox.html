@@ -9,7 +9,7 @@
                 <g:gallery galleryNode="{node}">
                     <figure {figureAttributes -> f:format.raw()}>
                         <a href="{g:imageData(image:image, theme:selectedTheme, imageVariant:'large', key:'src')}" itemprop="contentUrl" data-size="{g:imageData(image:image, theme:selectedTheme, imageVariant:'large', key:'width')}x{g:imageData(image:image, theme:selectedTheme, imageVariant:'large', key:'height')}">
-                            <g:image image="{image}" theme="{selectedTheme}" imageVariant="thumb" additionalAttributes="{itemprop: 'thumbnail'}"/>
+                            <g:image image="{image}" theme="{selectedTheme}" imageVariant="thumb" additionalAttributes="{itemprop: 'thumbnail'}" async="true"/>
                         </a>
                         <figcaption itemprop="caption description">{g:imageData(image:image, theme:selectedTheme, imageVariant:'large', key:'caption')}</figcaption>
                     </figure>
