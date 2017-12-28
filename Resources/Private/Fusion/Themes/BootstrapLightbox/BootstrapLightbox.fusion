@@ -18,8 +18,12 @@ prototype(Neos.Neos:Page) {
         path = 'resource://DL.Gallery/Public/Styles/BootstrapLightbox.css'
     }
 
-    body.javascripts.bootstrapGallery = DL.Gallery:JsScriptTag {
-        theme = 'bootstrapLightbox'
-        path = 'resource://DL.Gallery/Public/JavaScript/BootstrapLightbox.min.js'
+    body {
+        bootstrapGalleryJs = DL.Gallery:JsScriptTag {
+            theme = 'bootstrapLightbox'
+            path = 'resource://DL.Gallery/Public/JavaScript/BootstrapLightbox.min.js'
+        }
+        @process.appendBootstrapJs = ${value + this.bootstrapGalleryJs}
+        @process.appendBootstrapJs.@position = 'end'
     }
 }
