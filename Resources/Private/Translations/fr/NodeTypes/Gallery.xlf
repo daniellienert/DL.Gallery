@@ -3,52 +3,52 @@
 	<file original="" product-name="DL.Gallery" source-language="en" datatype="plaintext">
 		<body>
 			<trans-unit id="ui.label" xml:space="preserve">
-				<source>Galerie</source>
+				<target>Galerie</target>
 			</trans-unit>
 			<trans-unit id="groups.sourceBySelectedAssets" xml:space="preserve">
-				<source>Sélectionner des images</source>
+				<target>Sélectionner des images</target>
 			</trans-unit>
 			<trans-unit id="groups.sourceByTags" xml:space="preserve">
-				<source>Images par Collection/Etiquette</source>
+				<target>Images par Collection/Etiquette</target>
 			</trans-unit>
 			<trans-unit id="groups.presentation" xml:space="preserve">
-				<source>Présentation</source>
+				<target>Présentation</target>
 			</trans-unit>
 			<trans-unit id="properties.assets" xml:space="preserve">
-				<source>Images</source>
+				<target>Images</target>
 			</trans-unit>
 			<trans-unit id="properties.tag" xml:space="preserve">
-				<source>Etiquette</source>
+				<target>Etiquette</target>
 			</trans-unit>
 			<trans-unit id="properties.assetCollection" xml:space="preserve">
-				<source>Collection d'images</source>
+				<target>Collection d'images</target>
 			</trans-unit>
 			<trans-unit id="properties.sortingField" xml:space="preserve">
-				<source>Tri</source>
+				<target>Tri</target>
 			</trans-unit>
 			<trans-unit id="properties.sortingField.selectBoxEditor.values.unsorted" xml:space="preserve">
-				<source>Aucun tri</source>
+				<target>Aucun tri</target>
 			</trans-unit>
 			<trans-unit id="properties.sortingField.selectBoxEditor.values.resource.filename" xml:space="preserve">
-				<source>Nom</source>
+				<target>Nom</target>
 			</trans-unit>
 			<trans-unit id="properties.sortingField.selectBoxEditor.values.title" xml:space="preserve">
-				<source>Titre</source>
+				<target>Titre</target>
 			</trans-unit>
 			<trans-unit id="properties.sortingField.selectBoxEditor.values.lastModified" xml:space="preserve">
-				<source>Dernière modification</source>
+				<target>Dernière modification</target>
 			</trans-unit>
 			<trans-unit id="properties.sortingDirection" xml:space="preserve">
-				<source>Ordre du tri</source>
+				<target>Ordre du tri</target>
 			</trans-unit>
 			<trans-unit id="properties.sortingDirection.selectBoxEditor.values.ASC" xml:space="preserve">
-				<source>Ascendant</source>
+				<target>Ascendant</target>
 			</trans-unit>
 			<trans-unit id="properties.sortingDirection.selectBoxEditor.values.DESC" xml:space="preserve">
-				<source>Descendant</source>
+				<target>Descendant</target>
 			</trans-unit>
 			<trans-unit id="properties.theme" xml:space="preserve">
-				<source>Thème</source>
+				<target>Thème</target>
 			</trans-unit>
 		</body>
 	</file>

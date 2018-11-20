@@ -3,7 +3,7 @@
 	<file original="" product-name="DL.Gallery" source-language="en" datatype="plaintext">
 		<body>
             <trans-unit id="gallery.noImagesSelected">
-                    <source>Aucune image n'a été sélectionnée ou aucune image n'a été assignée à l'étiquette ou à la collection sélectionnée.</source>
+                    <target>Aucune image n'a été sélectionnée ou aucune image n'a été assignée à l'étiquette ou à la collection sélectionnée.</target>
             </trans-unit>
         </body>
     </file>
