@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file original="" product-name="DL.Gallery" source-language="en" datatype="plaintext">
+		<body>
+			<trans-unit id="ui.label" xml:space="preserve">
+				<target>Galerie</target>
+			</trans-unit>
+			<trans-unit id="groups.sourceBySelectedAssets" xml:space="preserve">
+				<target>Sélectionner des images</target>
+			</trans-unit>
+			<trans-unit id="groups.sourceByTags" xml:space="preserve">
+				<target>Images par Collection/Etiquette</target>
+			</trans-unit>
+			<trans-unit id="groups.presentation" xml:space="preserve">
+				<target>Présentation</target>
+			</trans-unit>
+			<trans-unit id="properties.assets" xml:space="preserve">
+				<target>Images</target>
+			</trans-unit>
+			<trans-unit id="properties.tag" xml:space="preserve">
+				<target>Etiquette</target>
+			</trans-unit>
+			<trans-unit id="properties.assetCollection" xml:space="preserve">
+				<target>Collection d'images</target>
+			</trans-unit>
+			<trans-unit id="properties.sortingField" xml:space="preserve">
+				<target>Tri</target>
+			</trans-unit>
+			<trans-unit id="properties.sortingField.selectBoxEditor.values.unsorted" xml:space="preserve">
+				<target>Aucun tri</target>
+			</trans-unit>
+			<trans-unit id="properties.sortingField.selectBoxEditor.values.resource.filename" xml:space="preserve">
+				<target>Nom</target>
+			</trans-unit>
+			<trans-unit id="properties.sortingField.selectBoxEditor.values.title" xml:space="preserve">
+				<target>Titre</target>
+			</trans-unit>
+			<trans-unit id="properties.sortingField.selectBoxEditor.values.lastModified" xml:space="preserve">
+				<target>Dernière modification</target>
+			</trans-unit>
+			<trans-unit id="properties.sortingDirection" xml:space="preserve">
+				<target>Ordre du tri</target>
+			</trans-unit>
+			<trans-unit id="properties.sortingDirection.selectBoxEditor.values.ASC" xml:space="preserve">
+				<target>Ascendant</target>
+			</trans-unit>
+			<trans-unit id="properties.sortingDirection.selectBoxEditor.values.DESC" xml:space="preserve">
+				<target>Descendant</target>
+			</trans-unit>
+			<trans-unit id="properties.theme" xml:space="preserve">
+				<target>Thème</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
+
+
