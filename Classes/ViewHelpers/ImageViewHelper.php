@@ -54,7 +54,7 @@ class ImageViewHelper extends \Neos\Media\ViewHelpers\ImageViewHelper
      * @param integer $quality Quality of the image
      * @return string an <img...> html tag
      */
-    public function render(ImageInterface $image = null, $width = null, $maximumWidth = null, $height = null, $maximumHeight = null, $allowCropping = false, $allowUpScaling = false, $async = false, $preset = null, $quality = null)
+    public function render(ImageInterface $image = null, $width = null, $maximumWidth = null, $height = null, $maximumHeight = null, $allowCropping = false, $allowUpScaling = false, $async = false, $preset = null, $quality = null, $format = null)
     {
 
         if ($this->hasArgument('theme') && $this->hasArgument('imageVariant')) {
@@ -81,7 +81,7 @@ class ImageViewHelper extends \Neos\Media\ViewHelpers\ImageViewHelper
 
         $this->arguments['alt'] = $this->tag->getAttribute('alt'); // so that parent::render doesn't override the alt
 
-        return parent::render($image, $width, $maximumWidth, $height, $maximumHeight, $allowCropping, $allowUpScaling, $async, $preset);
+        return parent::render($image, $width, $maximumWidth, $height, $maximumHeight, $allowCropping, $allowUpScaling, $async, $preset, $quality, $format);
     }
 
     /**
