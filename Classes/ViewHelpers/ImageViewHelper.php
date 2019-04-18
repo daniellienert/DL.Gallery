@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace DL\Gallery\ViewHelpers;
 
 /*
@@ -12,7 +14,11 @@ namespace DL\Gallery\ViewHelpers;
  */
 
 use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Mvc\Routing\Exception\MissingActionNameException;
+use Neos\FluidAdaptor\Core\ViewHelper\Exception;
 use Neos\Media\Domain\Model\ImageInterface;
+use Neos\Media\Exception\AssetServiceException;
+use Neos\Media\Exception\ThumbnailServiceException;
 
 class ImageViewHelper extends \Neos\Media\ViewHelpers\ImageViewHelper
 {
@@ -32,6 +38,7 @@ class ImageViewHelper extends \Neos\Media\ViewHelpers\ImageViewHelper
 
     /**
      * @return void
+     * @throws Exception
      */
     public function initializeArguments()
     {
@@ -52,7 +59,12 @@ class ImageViewHelper extends \Neos\Media\ViewHelpers\ImageViewHelper
      * @param boolean $async Return asynchronous image URI in case the requested image does not exist already
      * @param string $preset Preset used to determine image configuration
      * @param integer $quality Quality of the image
+     * @param null $format
      * @return string an <img...> html tag
+     *
+     * @throws MissingActionNameException
+     * @throws AssetServiceException
+     * @throws ThumbnailServiceException
      */
     public function render(ImageInterface $image = null, $width = null, $maximumWidth = null, $height = null, $maximumHeight = null, $allowCropping = false, $allowUpScaling = false, $async = false, $preset = null, $quality = null, $format = null)
     {

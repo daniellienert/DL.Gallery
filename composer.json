@@ -6,7 +6,7 @@
         "MIT"
     ],
     "require": {
-        "neos/neos": ">=3.3.0 < 4.3.0"
+        "neos/neos": "^4.3"
     },
     "autoload": {
         "psr-4": {

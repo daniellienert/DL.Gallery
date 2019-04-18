@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace DL\Gallery\DataSources;
 
@@ -28,20 +29,17 @@ class AssetCollectionDataSource extends AbstractDataSource
      */
     static protected $identifier = 'dl-gallery-assetcollections';
 
-
     /**
      * @Flow\Inject
      * @var PersistenceManagerInterface
      */
     protected $persistenceManager;
 
-
     /**
      * @Flow\Inject
      * @var AssetCollectionRepository
      */
     protected $assetCollectionRepository;
-
 
     /**
      * @param NodeInterface $node
@@ -65,5 +63,4 @@ class AssetCollectionDataSource extends AbstractDataSource
 
        return $options;
     }
-
 }

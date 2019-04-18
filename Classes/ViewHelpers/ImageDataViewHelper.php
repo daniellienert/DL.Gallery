@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace DL\Gallery\ViewHelpers;
 
@@ -14,9 +15,15 @@ namespace DL\Gallery\ViewHelpers;
 
 use DL\Gallery\Exceptions\InvalidConfigurationException;
 use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Mvc\Routing\Exception\MissingActionNameException;
 use Neos\FluidAdaptor\Core\ViewHelper\AbstractViewHelper;
+use Neos\FluidAdaptor\Core\ViewHelper\Exception;
 use Neos\Media\Domain\Model\ImageInterface;
 use Neos\Media\Domain\Model\ThumbnailConfiguration;
+use Neos\Media\Domain\Service\AssetService;
+use Neos\Media\Domain\Service\ThumbnailService;
+use Neos\Media\Exception\AssetServiceException;
+use Neos\Media\Exception\ThumbnailServiceException;
 
 class ImageDataViewHelper extends AbstractViewHelper
 {
@@ -27,13 +34,13 @@ class ImageDataViewHelper extends AbstractViewHelper
 
     /**
      * @Flow\Inject
-     * @var \Neos\Media\Domain\Service\ThumbnailService
+     * @var ThumbnailService
      */
     protected $thumbnailService;
 
     /**
      * @Flow\Inject
-     * @var \Neos\Media\Domain\Service\AssetService
+     * @var AssetService
      */
     protected $assetService;
 
@@ -53,9 +60,9 @@ class ImageDataViewHelper extends AbstractViewHelper
         $this->settings = $settings;
     }
 
-
     /**
      * @return void
+     * @throws Exception
      */
     public function initializeArguments()
     {
@@ -64,7 +71,6 @@ class ImageDataViewHelper extends AbstractViewHelper
         $this->registerArgument('imageVariant', 'string', 'The name of a defined resolution', false);
         $this->registerArgument('key', 'string', 'The key of the meta data array', false);
     }
-
 
     /**
      * @param ImageInterface $image
@@ -76,10 +82,12 @@ class ImageDataViewHelper extends AbstractViewHelper
      * @param bool $allowUpScaling
      * @return array|null
      * @throws InvalidConfigurationException
+     * @throws MissingActionNameException
+     * @throws AssetServiceException
+     * @throws ThumbnailServiceException
      */
     public function render(ImageInterface $image, int $width = 0, int $maximumWidth = 0, int $height = 0, int $maximumHeight = 0, bool $allowCropping = false, bool $allowUpScaling = false)
     {
-
         if ($this->hasArgument('theme') && $this->hasArgument('imageVariant')) {
             $themeSettings = $this->getSettingsForCurrentTheme($this->arguments['theme']);
 
@@ -112,7 +120,6 @@ class ImageDataViewHelper extends AbstractViewHelper
             return $imageData[$this->arguments['key']];
         }
     }
-
 
     /**
      * @param string $theme

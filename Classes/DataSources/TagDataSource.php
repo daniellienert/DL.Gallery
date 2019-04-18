@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace DL\Gallery\DataSources;
 
 /*
@@ -11,6 +13,10 @@ namespace DL\Gallery\DataSources;
  * source code.
  */
 
+use Neos\Flow\Persistence\PersistenceManagerInterface;
+use Neos\Flow\Persistence\QueryResultInterface;
+use Neos\Media\Domain\Model\Tag;
+use Neos\Media\Domain\Repository\TagRepository;
 use Neos\Neos\Service\DataSource\AbstractDataSource;
 use Neos\ContentRepository\Domain\Model\NodeInterface;
 use Neos\Flow\Annotations as Flow;
@@ -23,25 +29,22 @@ class TagDataSource extends AbstractDataSource
      */
     static protected $identifier = 'dl-gallery-tags';
 
-
     /**
      * @Flow\Inject
-     * @var \Neos\Flow\Persistence\PersistenceManagerInterface
+     * @var PersistenceManagerInterface
      */
     protected $persistenceManager;
 
-
     /**
      * @Flow\inject
-     * @var \Neos\Media\Domain\Repository\TagRepository
+     * @var TagRepository
      */
     protected $tagRepository;
-
 
     /**
      * @param NodeInterface|null $node
      * @param array $arguments
-     * @return \Neos\Flow\Persistence\QueryResultInterface
+     * @return QueryResultInterface
      */
     public function getData(NodeInterface $node = null, array $arguments)
     {
@@ -49,11 +52,10 @@ class TagDataSource extends AbstractDataSource
         $tags['']['label'] = '-';
 
         foreach ($tagCollection as $tag) {
-            /** @var \Neos\Media\Domain\Model\Tag $tag */
+            /** @var Tag $tag */
             $tags[$this->persistenceManager->getIdentifierByObject($tag)] = $tag;
         }
 
         return $tags;
     }
-
 }

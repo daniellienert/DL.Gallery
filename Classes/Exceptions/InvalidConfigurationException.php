@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace DL\Gallery\Exceptions;
 
 /*
@@ -13,5 +15,4 @@ namespace DL\Gallery\Exceptions;
 
 class InvalidConfigurationException extends \Exception
 {
-
 }
