@@ -54,10 +54,10 @@ class AssetCollectionDataSource extends AbstractDataSource
             /** @var AssetCollection $assetCollection */
             $options[] = [
                 'label' => $assetCollection->getTitle(),
-                'value' => json_encode([
+                'value' => [
                     '__identity' => $this->persistenceManager->getIdentifierByObject($assetCollection),
                     '__type' => TypeHandling::getTypeForValue($assetCollection)
-                ])
+                ]
             ];
         }
 
