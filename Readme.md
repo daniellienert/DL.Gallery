@@ -20,7 +20,7 @@ By default, the galleries CSS and JavaScript files are added to the header and f
 
 # Show a set of images as a gallery
 
-## Select imaged to be displayed in the gallery
+## Select images to be displayed in the gallery
 
 Add a new gallery node to your page and use the inspector add images from the media module or upload them directly.
 
