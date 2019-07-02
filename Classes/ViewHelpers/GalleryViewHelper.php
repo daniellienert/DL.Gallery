@@ -85,6 +85,7 @@ class GalleryViewHelper extends AbstractTagBasedViewHelper
         }
 
         $result = '';
+        $i = 0;
 
         foreach ($images as $image) {
             if ($image instanceof Image) {
@@ -92,10 +93,18 @@ class GalleryViewHelper extends AbstractTagBasedViewHelper
                 $this->templateVariableContainer->add('image', $image);
                 $this->templateVariableContainer->add('imageMeta', $this->buildImageMetaDataArray($image));
 
+                if ($i === 0) {
+                    $this->templateVariableContainer->add('isFirst', true);
+                } elseif ($this->templateVariableContainer->exists('isFirst')) {
+                    $this->templateVariableContainer->remove('isFirst');
+                }
+                
                 $result .= $this->renderChildren();
 
                 $this->templateVariableContainer->remove('image');
                 $this->templateVariableContainer->remove('imageMeta');
+                
+                $i++;
             }
         }
 
