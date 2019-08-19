@@ -46,7 +46,7 @@ class TagDataSource extends AbstractDataSource
      * @param array $arguments
      * @return QueryResultInterface
      */
-    public function getData(NodeInterface $node = null, array $arguments)
+    public function getData(NodeInterface $node = null, array $arguments = [])
     {
         $tagCollection = $this->tagRepository->findAll();
         $tags['']['label'] = '-';

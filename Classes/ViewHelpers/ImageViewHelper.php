@@ -16,6 +16,7 @@ namespace DL\Gallery\ViewHelpers;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Mvc\Routing\Exception\MissingActionNameException;
 use Neos\FluidAdaptor\Core\ViewHelper\Exception;
+use Neos\Media\Domain\Model\Image;
 use Neos\Media\Domain\Model\ImageInterface;
 use Neos\Media\Exception\AssetServiceException;
 use Neos\Media\Exception\ThumbnailServiceException;
@@ -49,42 +50,33 @@ class ImageViewHelper extends \Neos\Media\ViewHelpers\ImageViewHelper
     }
 
     /**
-     * @param ImageInterface $image The image to be rendered as an image
-     * @param integer $width Desired width of the image
-     * @param integer $maximumWidth Desired maximum width of the image
-     * @param integer $height Desired height of the image
-     * @param integer $maximumHeight Desired maximum height of the image
-     * @param boolean $allowCropping Whether the image should be cropped if the given sizes would hurt the aspect ratio
-     * @param boolean $allowUpScaling Whether the resulting image size might exceed the size of the original image
-     * @param boolean $async Return asynchronous image URI in case the requested image does not exist already
-     * @param string $preset Preset used to determine image configuration
-     * @param integer $quality Quality of the image
-     * @param null $format
      * @return string an <img...> html tag
      *
      * @throws MissingActionNameException
      * @throws AssetServiceException
      * @throws ThumbnailServiceException
      */
-    public function render(ImageInterface $image = null, $width = null, $maximumWidth = null, $height = null, $maximumHeight = null, $allowCropping = false, $allowUpScaling = false, $async = false, $preset = null, $quality = null, $format = null)
+    public function render(): string
     {
-
         if ($this->hasArgument('theme') && $this->hasArgument('imageVariant')) {
             $themeSettings = $this->getSettingsForCurrentTheme($this->arguments['theme']);
 
             $imageVariantSettings = $themeSettings['imageVariants'][$this->arguments['imageVariant']];
 
-            $width = isset($imageVariantSettings['width']) ? $imageVariantSettings['width'] : 0;
-            $maximumWidth = isset($imageVariantSettings['maximumWidth']) ? $imageVariantSettings['maximumWidth'] : 0;
-            $height = isset($imageVariantSettings['height']) ? $imageVariantSettings['height'] : 0;
-            $maximumHeight = isset($imageVariantSettings['maximumHeight']) ? $imageVariantSettings['maximumHeight'] : 0;
+            $this->arguments['width'] = isset($imageVariantSettings['width']) ? $imageVariantSettings['width'] : 0;
+            $this->arguments['maximumWidth'] = isset($imageVariantSettings['maximumWidth']) ? $imageVariantSettings['maximumWidth'] : 0;
+            $this->arguments['height'] = isset($imageVariantSettings['height']) ? $imageVariantSettings['height'] : 0;
+            $this->arguments['maximumHeight'] = isset($imageVariantSettings['maximumHeight']) ? $imageVariantSettings['maximumHeight'] : 0;
 
-            $allowCropping = isset($imageVariantSettings['allowCropping']) ? $imageVariantSettings['allowCropping'] : false;
-            $allowUpScaling = isset($imageVariantSettings['allowUpScaling']) ? $imageVariantSettings['allowUpScaling'] : false;
+            $this->arguments['allowCropping'] = isset($imageVariantSettings['allowCropping']) ? $imageVariantSettings['allowCropping'] : false;
+            $this->arguments['allowUpScaling'] = isset($imageVariantSettings['allowUpScaling']) ? $imageVariantSettings['allowUpScaling'] : false;
 
             $this->tag->removeAttribute('theme');
             $this->tag->removeAttribute('imageVariant');
         }
+
+        /** @var Image $image */
+        $image = $this->arguments['image'];
 
         $this->tag->addAttributes([
             'title' => $image->getTitle(),
@@ -93,7 +85,7 @@ class ImageViewHelper extends \Neos\Media\ViewHelpers\ImageViewHelper
 
         $this->arguments['alt'] = $this->tag->getAttribute('alt'); // so that parent::render doesn't override the alt
 
-        return parent::render($image, $width, $maximumWidth, $height, $maximumHeight, $allowCropping, $allowUpScaling, $async, $preset, $quality, $format);
+        return parent::render();
     }
 
     /**

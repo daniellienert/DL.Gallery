@@ -44,7 +44,7 @@ class ThemeDataSource extends AbstractDataSource
      * @param array $arguments
      * @return array
      */
-    public function getData(NodeInterface $node = null, array $arguments)
+    public function getData(NodeInterface $node = null, array $arguments = [])
     {
 
         $themes = [];
