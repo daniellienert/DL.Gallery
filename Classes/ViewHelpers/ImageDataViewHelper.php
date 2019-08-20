@@ -18,6 +18,7 @@ use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Mvc\Routing\Exception\MissingActionNameException;
 use Neos\FluidAdaptor\Core\ViewHelper\AbstractViewHelper;
 use Neos\FluidAdaptor\Core\ViewHelper\Exception;
+use Neos\Media\Domain\Model\Image;
 use Neos\Media\Domain\Model\ImageInterface;
 use Neos\Media\Domain\Model\ThumbnailConfiguration;
 use Neos\Media\Domain\Service\AssetService;
@@ -67,27 +68,36 @@ class ImageDataViewHelper extends AbstractViewHelper
     public function initializeArguments()
     {
         parent::initializeArguments();
+        $this->registerArgument('image', ImageInterface::class, 'The the image', true);
+        $this->registerArgument('width', 'int', 'The images width', false);
+        $this->registerArgument('maximumWidth', 'int', 'The images maximumWidth', false);
+        $this->registerArgument('height', 'int', 'The images height', false);
+        $this->registerArgument('maximumHeight', 'int', 'The images maximumHeight', false);
+        $this->registerArgument('allowCropping', 'bool', 'If the image is allowed to be cropped', false);
+        $this->registerArgument('allowUpScaling', 'bool', 'If the image is allowed to be scaled up', false);
         $this->registerArgument('theme', 'string', 'The name of a gallery theme', false);
         $this->registerArgument('imageVariant', 'string', 'The name of a defined resolution', false);
         $this->registerArgument('key', 'string', 'The key of the meta data array', false);
     }
 
     /**
-     * @param ImageInterface $image
-     * @param integer $width
-     * @param integer $maximumWidth
-     * @param integer $height
-     * @param integer $maximumHeight
-     * @param bool $allowCropping
-     * @param bool $allowUpScaling
      * @return array|null
      * @throws InvalidConfigurationException
      * @throws MissingActionNameException
      * @throws AssetServiceException
      * @throws ThumbnailServiceException
+     * @throws \Exception
      */
-    public function render(ImageInterface $image, int $width = 0, int $maximumWidth = 0, int $height = 0, int $maximumHeight = 0, bool $allowCropping = false, bool $allowUpScaling = false)
+    public function render()
     {
+        $image = $this->arguments['image'];
+        $width = $this->arguments['width'];
+        $maximumWidth = $this->arguments['maximumWidth'];
+        $height = $this->arguments['height'];
+        $maximumHeight = $this->arguments['maximumHeight'];
+        $allowCropping = $this->arguments['allowCropping'];
+        $allowUpScaling = $this->arguments['allowUpScaling'];
+
         if ($this->hasArgument('theme') && $this->hasArgument('imageVariant')) {
             $themeSettings = $this->getSettingsForCurrentTheme($this->arguments['theme']);
 
@@ -109,7 +119,9 @@ class ImageDataViewHelper extends AbstractViewHelper
         $thumbnailConfiguration = new ThumbnailConfiguration($width, $maximumWidth, $height, $maximumHeight, $allowCropping, $allowUpScaling);
         $imageData = $this->assetService->getThumbnailUriAndSizeForAsset($image, $thumbnailConfiguration);
 
-        $imageData['title'] = $image->getTitle();
+        assert($image instanceof Image);
+
+        $imageData['title'] = $image->getTitle( );
         $imageData['caption'] = $image->getCaption();
 
         if (!$this->hasArgument('key')) {

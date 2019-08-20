@@ -65,13 +65,19 @@ class GalleryViewHelper extends AbstractTagBasedViewHelper
         $this->settings = $settings;
     }
 
+    public function initializeArguments()
+    {
+        parent::initializeArguments();
+        $this->registerArgument('galleryNode', Node::class, 'The gallery node', true);
+    }
+
     /**
      * @param Node $galleryNode
      * @return string
      */
-    public function render(Node $galleryNode)
+    public function render()
     {
-        $this->galleryNode = $galleryNode;
+        $this->galleryNode = $this->arguments['galleryNode'];
         $this->templateVariableContainer->add('themeSettings', $this->getSettingsForCurrentTheme());
 
         $images = array_merge(
@@ -98,18 +104,17 @@ class GalleryViewHelper extends AbstractTagBasedViewHelper
                 } elseif ($this->templateVariableContainer->exists('isFirst')) {
                     $this->templateVariableContainer->remove('isFirst');
                 }
-                
+
                 $result .= $this->renderChildren();
 
                 $this->templateVariableContainer->remove('image');
                 $this->templateVariableContainer->remove('imageMeta');
-                
+
                 $i++;
             }
         }
 
         $this->templateVariableContainer->remove('themeSettings');
-
         return $result;
     }
 
