@@ -1,0 +1,14 @@
+prototype(Neos.Neos:Page) {
+    head.stylesheets.justifiedGallery = DL.Gallery:CSSLinkTag {
+        theme = 'justified'
+        path = 'resource://DL.Gallery/Public/Styles/JustifiedGallery.css'
+    }
+
+    justifiedGalleryJs = Neos.Fusion:Value {
+        value = DL.Gallery:JsScriptTag {
+            theme = 'justified'
+            path = 'resource://DL.Gallery/Public/JavaScript/JustifiedGallery.min.js'
+        }
+        @position = 'after body'
+    }
+}

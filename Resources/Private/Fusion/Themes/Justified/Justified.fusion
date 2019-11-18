@@ -5,20 +5,3 @@ prototype(DL.Gallery:Themes.Justified) < prototype(DL.Gallery:Themes.AbstractThe
         lightbox = 'lightbox-images'
     }
 }
-
-prototype(Neos.Neos:Page) {
-    head.stylesheets.justifiedGallery = DL.Gallery:CSSLinkTag {
-        theme = 'justified'
-        path = 'resource://DL.Gallery/Public/Styles/JustifiedGallery.css'
-
-    }
-
-    body {
-        justifiedGalleryJs = DL.Gallery:JsScriptTag {
-            theme = 'justified'
-            path = 'resource://DL.Gallery/Public/JavaScript/JustifiedGallery.min.js'
-        }
-        @process.appendJustifiedGalleryJs = ${value + this.justifiedGalleryJs}
-        @process.appendJustifiedGalleryJs.@position = 'end'
-    }
-}
