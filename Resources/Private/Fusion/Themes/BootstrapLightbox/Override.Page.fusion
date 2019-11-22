@@ -1,0 +1,15 @@
+prototype(Neos.Neos:Page) {
+    head.stylesheets.bootstrapGallery = DL.Gallery:CSSLinkTag {
+        theme = 'bootstrapLightbox'
+        path = 'resource://DL.Gallery/Public/Styles/BootstrapLightbox.css'
+    }
+
+    bootstrapGalleryJs = Neos.Fusion:Value {
+        value = DL.Gallery:JsScriptTag {
+            theme = 'bootstrapLightbox'
+            path = 'resource://DL.Gallery/Public/JavaScript/BootstrapLightbox.min.js'
+        }
+
+        @position = 'after body'
+    }
+}

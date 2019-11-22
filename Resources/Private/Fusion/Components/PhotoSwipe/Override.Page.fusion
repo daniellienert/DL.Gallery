@@ -1,0 +1,7 @@
+prototype(Neos.Neos:Page) {
+    photoswipe = Neos.Fusion:Value {
+        value = DL.Gallery:Components.PhotoSwipeHtml
+        @if.photoSwipeShouldBeIncluded = DL.Gallery:ShouldPhotoswipeBeIncluded
+        @position = 'after body'
+    }
+}
