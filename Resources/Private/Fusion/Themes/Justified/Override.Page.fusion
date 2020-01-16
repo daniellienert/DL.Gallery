@@ -9,6 +9,6 @@ prototype(Neos.Neos:Page) {
             theme = 'justified'
             path = 'resource://DL.Gallery/Public/JavaScript/JustifiedGallery.min.js'
         }
-        @position = 'after body'
+        @position = 'end'
     }
 }

@@ -3,15 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "devDependencies": {
-    "grunt": "^1.0",
-    "grunt-cli": "^1.0",
-    "grunt-contrib-compass": "^1.0",
-    "grunt-contrib-concat": "^1.0",
-    "grunt-contrib-uglify": "^1.0",
-    "grunt-contrib-watch": "^1.0",
-    "grunt-notify": "^0.4",
-    "load-grunt-config": "^1.0",
-    "load-grunt-tasks": "^5.0"
+      "gulp": "^4.0.2",
+      "gulp-sass": "^4.0.2",
+      "gulp-concat": "^2.6.1",
+      "gulp-plumber": "^1.2.1",
+      "gulp-sass-glob": "^1.1.0",
+      "gulp-uglify": "^3.0.2"
   },
   "dependencies": {
     "photoswipe": "4.1.3",
