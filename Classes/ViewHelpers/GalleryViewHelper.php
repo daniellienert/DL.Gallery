@@ -208,7 +208,18 @@ class GalleryViewHelper extends AbstractTagBasedViewHelper
     protected function sortImageObjects(array &$images, string $field = 'resource.filename', string $direction = 'ASC')
     {
         usort($images, function ($imageA, $imageB) use ($field) {
-            return strcmp(ObjectAccess::getPropertyPath($imageA, $field), ObjectAccess::getPropertyPath($imageB, $field));
+            $valueA = ObjectAccess::getPropertyPath($imageA, $field);
+            $valueB = ObjectAccess::getPropertyPath($imageB, $field);
+
+            if ($valueA instanceof \DateTime) {
+                $valueA =  (string) $valueA->getTimestamp();
+            }
+
+            if ($valueB instanceof \DateTime) {
+                $valueB =  (string) $valueB->getTimestamp();
+            }
+
+            return strcmp($valueA, $valueB);
         });
 
         if ($direction === 'DESC') {
