@@ -5,10 +5,10 @@
     {backendError -> f:format.raw()}
     <f:if condition="{imagesSelected}">
         <g:gallery galleryNode="{node}">
-            <figure itemscope itemtype="http://schema.org/ImageObject">
+            <figure class="gallery-element" itemscope itemtype="http://schema.org/ImageObject">
                 <a href="{g:imageData(image:image, theme:selectedTheme, imageVariant:'large', key:'src')}" itemprop="contentUrl"
                         data-size="{g:imageData(image:image, theme:selectedTheme, imageVariant:'large', key:'width')}x{g:imageData(image:image, theme:selectedTheme, imageVariant:'large', key:'height')}">
-                    <g:image image="{image}" theme="{selectedTheme}" imageVariant="thumb" additionalAttributes="{itemprop: 'thumbnail'}" async="true"/>
+                    <g:image class="gallery-element-thumbnail" image="{image}" theme="{selectedTheme}" imageVariant="thumb" additionalAttributes="{itemprop: 'thumbnail'}" async="true"/>
                 </a>
                 <figcaption itemprop="caption">{image.title}</figcaption>
             </figure>

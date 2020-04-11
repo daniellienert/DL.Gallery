@@ -1,6 +1,7 @@
 $(".theme-justified").justifiedGallery(
     {
-        selector:       '> figure > a, > div:not(.spinner)',
+        selector:       '.gallery-element, > div:not(.spinner)',
+        imgSelector:    '.gallery-element-thumbnail',
         rowHeight:      350,
         maxRowHeight:   500,
         captions:       true,
